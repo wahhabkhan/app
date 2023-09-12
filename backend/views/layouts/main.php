@@ -138,13 +138,13 @@ AppAsset::register($this);
 
 
     .nav a:hover {
-        color: red;
-        /* GIZ logo color */
+        color: green;
+        
     }
 
     .menu-item:hover .arrow {
-        border-color: red;
-        /* GIZ logo color */
+        border-color: green;
+        
     }
 
     body {
@@ -163,32 +163,21 @@ AppAsset::register($this);
     NavBar::begin([
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
-            'class' => 'navbar navbar-expand-md hover navbar-dark bg-danger fixed-top', // Add justify-content-between class
+            'class' => 'navbar navbar-expand-md hover navbar-dark bg-success fixed-top', // Add justify-content-between class
         ],
     ]);
     ?>
 
-        <!-- Logo section -->
-        <!-- <div class="navbar-brand">
-            <?php
-    echo Html::img(Yii::$app->request->baseUrl . '/GIZ_LOGO.png', [
-        'alt' => 'GIZ Logo',
-        'width' => '60',
-        'linkOptions' => ['class' => 'mb-1']
-    ]);
-    ?>
-        </div> -->
-
 
         <?php
     $menuItems = [
-        ['label' => 'ERP', 'url' => ['/site/index'], 'linkOptions' => ['class' => 'ms-2 text-light  mb-1']],
+        ['label' => 'SMD', 'url' => ['/site/index'], 'linkOptions' => ['class' => 'ms-2 text-light  mb-1']],
         ['label' => 'Home', 'url' => ['/site/index'], 'linkOptions' => ['class' => 'ms-2 text-light mb-1']],
         // Add more menu items as needed.
     ];
 
     if (Yii::$app->user->isGuest) {
-        $menuItems[] = ['label' => 'Login', 'url' => ['/site/login mb-1 ms-1'],
+        $menuItems[] = ['label' => 'Login', 'url' => ['/site/login'],
     ];
     } else {
         $menuItems[] = [
@@ -214,7 +203,7 @@ AppAsset::register($this);
     <main role="main" class="flex-shrink-0">
         <div class="container">
             <?= Alert::widget() ?>
-            <div class="sidebar" style="background : #F1e6d8;">
+            <div class="sidebar" style="background : #EAFFF1">
 
                 <nav class="nav flex-column">
                     <br><br>

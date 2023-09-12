@@ -123,7 +123,7 @@ class m210823_000000_create_tables extends Migration
         ENGINE = InnoDB
         AUTO_INCREMENT = 7
         DEFAULT CHARACTER SET = utf8mb4;
- -- -----------------------------------------------------
+        -- -----------------------------------------------------
  -- Table `app`.`customer`
  -- -----------------------------------------------------
  CREATE TABLE IF NOT EXISTS `app`.`customer` (
