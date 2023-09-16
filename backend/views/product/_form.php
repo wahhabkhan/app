@@ -1,0 +1,31 @@
+<?php
+
+use yii\helpers\Html;
+use yii\widgets\ActiveForm;
+
+/** @var yii\web\View $this */
+/** @var common\models\Product $model */
+/** @var yii\widgets\ActiveForm $form */
+?>
+
+<div class="product-form">
+
+    <?php $form = ActiveForm::begin(); ?>
+
+    <?= $form->field($model, 'product_name')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'barcode')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'volume_or_weight')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'retial_price')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'wholesale_price')->textInput(['maxlength' => true]) ?>
+
+    <div class="form-group">
+        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+    </div>
+
+    <?php ActiveForm::end(); ?>
+
+</div>

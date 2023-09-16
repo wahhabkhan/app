@@ -1,0 +1,39 @@
+<?php
+
+use yii\helpers\Html;
+use yii\widgets\ActiveForm;
+
+/** @var yii\web\View $this */
+/** @var common\models\ProductionEmployees $model */
+/** @var yii\widgets\ActiveForm $form */
+?>
+
+<div class="production-employees-form">
+
+    <?php $form = ActiveForm::begin(); ?>
+
+    <?= $form->field($model, 'first_name')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'last_name')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'phone_number')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'email')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'street')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'house_number')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'appendix')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'zipcode')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'city')->textInput(['maxlength' => true]) ?>
+
+    <div class="form-group">
+        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+    </div>
+
+    <?php ActiveForm::end(); ?>
+
+</div>
