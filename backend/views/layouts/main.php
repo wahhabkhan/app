@@ -171,7 +171,7 @@ AppAsset::register($this);
 
         <?php
     $menuItems = [
-        ['label' => 'SMD', 'url' => ['/site/index'], 'linkOptions' => ['class' => 'ms-2 text-light  mb-1']],
+        ['label' => 'ERP', 'url' => ['/site/index'], 'linkOptions' => ['class' => 'ms-2 text-light  mb-1']],
         ['label' => 'Home', 'url' => ['/site/index'], 'linkOptions' => ['class' => 'ms-2 text-light mb-1']],
         // Add more menu items as needed.
     ];
@@ -207,38 +207,38 @@ AppAsset::register($this);
 
                 <nav class="nav flex-column">
                     <br><br>
-                    <div class="menu-item" onclick="toggleSubMenu('project')">
+                    <div class="menu-item" onclick="toggleSubMenu('')">
                         <a href="#">Sales</a>
                         <i class="arrow down"></i>
                     </div>
-                    <div class="sub-menu" id="project">
-                        <a href="<?=Yii::$app->urlManager->createUrl(['project/add-project'])?>">Add Project</a>
+                    <div class="sub-menu" id="">
+                        <a href="<?=Yii::$app->urlManager->createUrl(['/add-'])?>">Add </a>
                         <br>
-                        <a href="<?=Yii::$app->urlManager->createUrl(['project/view-project'])?>">View Project</a>
+                        <a href="<?=Yii::$app->urlManager->createUrl(['/view-'])?>">View </a>
                     </div>
 
-                    <div class="menu-item" onclick="toggleSubMenu('intervention')">
+                    <div class="menu-item" onclick="toggleSubMenu('')">
                         <a href="#">Suppliers & Raw materials</a>
                         <i class="arrow down"></i>
                     </div>
-                    <div class="sub-menu" id="intervention">
-                        <a href="<?=Yii::$app->urlManager->createUrl(['intervention/add-intervention'])?>">Add
-                            Intervention</a>
+                    <div class="sub-menu" id="">
+                        <a href="<?=Yii::$app->urlManager->createUrl(['/add-'])?>">Add
+                            </a>
                         <br>
-                        <a href="<?=Yii::$app->urlManager->createUrl(['intervention/view-intervention'])?>">View
-                            Intervention</a>
+                        <a href="<?=Yii::$app->urlManager->createUrl(['/view-'])?>">View
+                            </a>
                     </div>
 
-                    <div class="menu-item" onclick="toggleSubMenu('stakeholder')">
+                    <div class="menu-item" onclick="toggleSubMenu('')">
                         <a href="#">Production</a>
                         <i class="arrow down"></i>
                     </div>
-                    <div class="sub-menu" id="stakeholder">
-                        <a href="<?=Yii::$app->urlManager->createUrl(['stakeholder/add-stakeholder'])?>">Add
-                            Stakeholder</a>
+                    <div class="sub-menu" id="">
+                        <a href="<?=Yii::$app->urlManager->createUrl([''])?>">Add
+                            </a>
                         <br>
-                        <a href="<?=Yii::$app->urlManager->createUrl(['stakeholder/view-stakeholder'])?>">View
-                            Stakeholder</a>
+                        <a href="<?=Yii::$app->urlManager->createUrl(['/'])?>">View
+                            </a>
                     </div>
 
                     <div class="menu-item" onclick="toggleSubMenu('user')">
