@@ -1,31 +1,20 @@
 <?php
 
-use common\models\ProductionBatch;
 use yii\helpers\Html;
-use yii\helpers\Url;
-use yii\grid\ActionColumn;
 use yii\grid\GridView;
 
-/** @var yii\web\View $this */
-/** @var common\models\ProductionBatchSearch $searchModel */
-/** @var yii\data\ActiveDataProvider $dataProvider */
+/* @var $this yii\web\View */
+/* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Production Batches';
+$this->title = 'Customers';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div style="margin-left:180px" class="production-batch-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <p>
-        <?= Html::a('Create Production Batch', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
-
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
@@ -33,18 +22,25 @@ $this->params['breadcrumbs'][] = $this->title;
             'date',
             'production_name',
             'total_units',
-            'expiration_date',
-            //'batch_number',
-            //'raw_material',
-            //'employee_name',
+            
+
+            // Additional columns as needed...
+
             [
-                'class' => ActionColumn::className(),
-                'urlCreator' => function ($action, ProductionBatch $model, $key, $index, $column) {
-                    return Url::toRoute([$action, 'batch_id' => $model->batch_id]);
-                 }
+                'class' => 'yii\grid\ActionColumn',
+                'template' => '{view} {update} {delete}',
+                'urlCreator' => function ($action, $model, $key, $index) {
+                    if ($action === 'view') {
+                        return ['production-batch/view', 'batch_id' => $model->batch_id];
+                    }
+                    if ($action === 'update') {
+                        return ['production-batch/update', 'batch_id' => $model->batch_id];
+                    }
+                    if ($action === 'delete') {
+                        return ['production-batch/delete', 'batch_id' => $model->batch_id];
+                    }
+                },
             ],
         ],
     ]); ?>
-
-
 </div>

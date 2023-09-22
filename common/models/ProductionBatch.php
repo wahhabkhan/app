@@ -32,9 +32,9 @@ class ProductionBatch extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['date', 'production_name', 'total_units', 'expiration_date', 'batch_number', 'raw_material', 'employee_name'], 'required'],
+            [['date', 'production_name', 'total_units', 'expiration_date', 'batch_number', 'employee_name'], 'required'],
             [['date'], 'safe'],
-            [['production_name', 'total_units', 'expiration_date', 'batch_number', 'raw_material', 'employee_name'], 'string', 'max' => 255],
+            [['production_name', 'total_units', 'expiration_date', 'batch_number' , 'employee_name'], 'string', 'max' => 255],
         ];
     }
 
@@ -50,8 +50,10 @@ class ProductionBatch extends \yii\db\ActiveRecord
             'total_units' => 'Total Units',
             'expiration_date' => 'Expiration Date',
             'batch_number' => 'Batch Number',
-            'raw_material' => 'Raw Material',
-            'employee_name' => 'Employee Name',
+            
+            'employee_name' => 'Employee',
         ];
     }
+    
+
 }

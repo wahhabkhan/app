@@ -70,6 +70,7 @@ class SupplierContactController extends Controller
         $model = new SupplierContact();
 
         if ($this->request->isPost) {
+
             if ($model->load($this->request->post()) && $model->save()) {
                 return $this->redirect(['view', 'contact_id' => $model->contact_id]);
             }

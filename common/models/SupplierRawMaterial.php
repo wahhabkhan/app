@@ -12,6 +12,9 @@ use Yii;
  * @property string $supplier_code
  * @property string $unit
  * @property string $low_stock
+ * @property int $supplier_id
+ *
+ * @property Supplier $supplier
  */
 class SupplierRawMaterial extends \yii\db\ActiveRecord
 {
@@ -29,8 +32,10 @@ class SupplierRawMaterial extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['raw_material_name', 'supplier_code', 'unit', 'low_stock'], 'required'],
+            [['raw_material_name', 'supplier_code', 'unit', 'low_stock', 'supplier_id'], 'required'],
+            [['supplier_id'], 'integer'],
             [['raw_material_name', 'supplier_code', 'unit', 'low_stock'], 'string', 'max' => 255],
+            [['supplier_id'], 'exist', 'skipOnError' => true, 'targetClass' => Supplier::class, 'targetAttribute' => ['supplier_id' => 'supplier_id']],
         ];
     }
 
@@ -45,6 +50,19 @@ class SupplierRawMaterial extends \yii\db\ActiveRecord
             'supplier_code' => 'Supplier Code',
             'unit' => 'Unit',
             'low_stock' => 'Low Stock',
+            'supplier_id' => 'Supplier',
         ];
+    }
+
+    /**
+     * Gets query for [[Supplier]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getSupplierName()
+    {
+        // Check if supplier_id is set, and if so, fetch the corresponding supplier's name
+        $supplier = Supplier::findOne($this->supplier_id);
+        return $supplier ? $supplier->company_name : 'N/A';
     }
 }

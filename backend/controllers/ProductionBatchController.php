@@ -55,6 +55,7 @@ class ProductionBatchController extends Controller
      */
     public function actionView($batch_id)
     {
+        
         return $this->render('view', [
             'model' => $this->findModel($batch_id),
         ]);
@@ -68,6 +69,8 @@ class ProductionBatchController extends Controller
     public function actionCreate()
     {
         $model = new ProductionBatch();
+        
+        $model->date = date('Y-m-d');
 
         if ($this->request->isPost) {
             if ($model->load($this->request->post()) && $model->save()) {

@@ -10,15 +10,17 @@ $this->title = $model->batch_id;
 $this->params['breadcrumbs'][] = ['label' => 'Production Batches', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
+
+
 ?>
 <div style="margin-left:180px" class="production-batch-view">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Update', ['update', 'batch_id' => $model->batch_id], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('Update', ['update', 'batch_id' => $model->batch_id], ['class' => 'btn btn-success']) ?>
         <?= Html::a('Delete', ['delete', 'batch_id' => $model->batch_id], [
-            'class' => 'btn btn-danger',
+            'class' => 'btn btn-success',
             'data' => [
                 'confirm' => 'Are you sure you want to delete this item?',
                 'method' => 'post',
@@ -35,7 +37,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'total_units',
             'expiration_date',
             'batch_number',
-            'raw_material',
+
             'employee_name',
         ],
     ]) ?>

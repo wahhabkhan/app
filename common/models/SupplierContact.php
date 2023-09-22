@@ -56,7 +56,7 @@ class SupplierContact extends \yii\db\ActiveRecord
             'phone_number1' => 'Phone Number1',
             'phone_number2' => 'Phone Number2',
             'phone_number3' => 'Phone Number3',
-            'supplier_id' => 'Supplier ID',
+            'supplier_id' => 'Supplier',
         ];
     }
 

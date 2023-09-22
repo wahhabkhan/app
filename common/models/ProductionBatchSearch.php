@@ -18,7 +18,7 @@ class ProductionBatchSearch extends ProductionBatch
     {
         return [
             [['batch_id'], 'integer'],
-            [['date', 'production_name', 'total_units', 'expiration_date', 'batch_number', 'raw_material', 'employee_name'], 'safe'],
+            [['date', 'production_name', 'total_units', 'expiration_date', 'batch_number', 'employee_name'], 'safe'],
         ];
     }
 
@@ -66,7 +66,7 @@ class ProductionBatchSearch extends ProductionBatch
             ->andFilterWhere(['like', 'total_units', $this->total_units])
             ->andFilterWhere(['like', 'expiration_date', $this->expiration_date])
             ->andFilterWhere(['like', 'batch_number', $this->batch_number])
-            ->andFilterWhere(['like', 'raw_material', $this->raw_material])
+
             ->andFilterWhere(['like', 'employee_name', $this->employee_name]);
 
         return $dataProvider;

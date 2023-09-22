@@ -10,9 +10,9 @@ $this->params['breadcrumbs'][] = ['label' => 'Supplier Raw Materials', 'url' => 
 $this->params['breadcrumbs'][] = ['label' => $model->raw_id, 'url' => ['view', 'raw_id' => $model->raw_id]];
 $this->params['breadcrumbs'][] = 'Update';
 ?>
-<div class="supplier-raw-material-update">
+<div   class="supplier-raw-material-update">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <h1 style="margin-left:180px"><?= Html::encode($this->title) ?></h1>
 
     <?= $this->render('_form', [
         'model' => $model,

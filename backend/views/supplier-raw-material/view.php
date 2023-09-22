@@ -11,14 +11,14 @@ $this->params['breadcrumbs'][] = ['label' => 'Supplier Raw Materials', 'url' => 
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
-<div style="margin-left:180px" class="supplier-raw-material-view">
+<div style="margin-left:180px"  class="supplier-raw-material-view">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Update', ['update', 'raw_id' => $model->raw_id], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('Update', ['update', 'raw_id' => $model->raw_id], ['class' => 'btn btn-success']) ?>
         <?= Html::a('Delete', ['delete', 'raw_id' => $model->raw_id], [
-            'class' => 'btn btn-danger',
+            'class' => 'btn btn-success',
             'data' => [
                 'confirm' => 'Are you sure you want to delete this item?',
                 'method' => 'post',
@@ -34,6 +34,10 @@ $this->params['breadcrumbs'][] = $this->title;
             'supplier_code',
             'unit',
             'low_stock',
+            [
+                'label' => 'Supplier',
+                'value' => $model->supplierName,
+            ],
         ],
     ]) ?>
 

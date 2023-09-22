@@ -2,10 +2,15 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use common\models\Supplier;
+use yii\helpers\ArrayHelper;
+
 
 /** @var yii\web\View $this */
 /** @var common\models\SupplierContact $model */
 /** @var yii\widgets\ActiveForm $form */
+$employees = Supplier::find()->all();
+$employeesList = ArrayHelper::map($employees, 'supplier_id', 'supplier_id');
 ?>
 
 <div style="margin-left:180px" class="supplier-contact-form">
@@ -26,7 +31,10 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'phone_number3')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'supplier_id')->textInput() ?>
+    <?= $form->field($model, 'supplier_id')->dropDownList(
+               $employeesList,
+               ['prompt' => 'Select Supplier']
+               ) ?>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>

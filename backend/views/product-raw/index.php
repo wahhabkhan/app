@@ -24,8 +24,6 @@ $this->params['breadcrumbs'][] = $this->title;
             'weight',
             
 
-            // Additional columns as needed...
-
             [
                 'class' => 'yii\grid\ActionColumn',
                 'template' => '{view} {update} {delete}',

@@ -1,31 +1,20 @@
 <?php
 
-use common\models\Supplier;
 use yii\helpers\Html;
-use yii\helpers\Url;
-use yii\grid\ActionColumn;
 use yii\grid\GridView;
 
-/** @var yii\web\View $this */
-/** @var common\models\SupplierSearch $searchModel */
-/** @var yii\data\ActiveDataProvider $dataProvider */
+/* @var $this yii\web\View */
+/* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = 'Suppliers';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div style="margin-left:180px" class="supplier-index">
+<div style="margin-left:180px" class="product-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <p>
-        <?= Html::a('Create Supplier', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
-
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
@@ -33,22 +22,42 @@ $this->params['breadcrumbs'][] = $this->title;
             'company_name',
             'street_name',
             'house_number',
-            'appendix',
-            //'zipcode',
-            //'city',
-            //'country',
-            //'vat_number',
-            //'coc_number',
-            //'email:email',
-            //'notes',
+            
+            
+
+            // Additional columns as needed...
+
             [
-                'class' => ActionColumn::className(),
-                'urlCreator' => function ($action, Supplier $model, $key, $index, $column) {
-                    return Url::toRoute([$action, 'supplier_id' => $model->supplier_id]);
-                 }
+                'class' => 'yii\grid\ActionColumn',
+                'template' => '{view} {update} {delete} {add-rm} {view-rm} <br> <br> {add-raw} {view-raw}',
+                'buttons' => [
+                    'add-rm' => function ($url, $model, $key) {
+                        return Html::a('Add Contacts', ['supplier-contact/create', 'contact_id' => $model->supplier_id], ['class' => 'btn btn-primary']);
+                    },
+                    'view-rm' => function ($url, $model, $key) {
+                        return Html::a('View Contacts', ['supplier-contact/index', 'contact_id' => $model->supplier_id], ['class' => 'btn btn-primary']);
+                    },
+                    'add-raw' => function ($url, $model, $key) {
+                        // Replace 'RawMaterialController/create' with the actual route for adding raw material
+                        return Html::a('Add Raw Material', ['supplier-raw-material/create', 'raw_id' => $model->supplier_id], ['class' => 'btn  btn-success']);
+                    },
+                    'view-raw' => function ($url, $model, $key) {
+                        // Replace 'RawMaterialViewController/index' with the actual route for viewing raw material
+                        return Html::a('View Raw Material', ['supplier-raw-material/index', 'raw_id' => $model->supplier_id], ['class' => 'btn btn-success']);
+                    },
+                ],
+                'urlCreator' => function ($action, $model, $key, $index) {
+                    if ($action === 'view') {
+                        return ['supplier/view', 'supplier_id' => $model->supplier_id];
+                    }
+                    if ($action === 'update') {
+                        return ['supplier/update', 'supplier_id' => $model->supplier_id];
+                    }
+                    if ($action === 'delete') {
+                        return ['supplier/delete', 'supplier_id' => $model->supplier_id];
+                    }
+                },
             ],
         ],
     ]); ?>
-
-
 </div>

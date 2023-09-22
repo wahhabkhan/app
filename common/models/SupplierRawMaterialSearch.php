@@ -17,7 +17,7 @@ class SupplierRawMaterialSearch extends SupplierRawMaterial
     public function rules()
     {
         return [
-            [['raw_id'], 'integer'],
+            [['raw_id', 'supplier_id'], 'integer'],
             [['raw_material_name', 'supplier_code', 'unit', 'low_stock'], 'safe'],
         ];
     }
@@ -59,6 +59,7 @@ class SupplierRawMaterialSearch extends SupplierRawMaterial
         // grid filtering conditions
         $query->andFilterWhere([
             'raw_id' => $this->raw_id,
+            'supplier_id' => $this->supplier_id,
         ]);
 
         $query->andFilterWhere(['like', 'raw_material_name', $this->raw_material_name])

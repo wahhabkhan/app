@@ -171,7 +171,7 @@ AppAsset::register($this);
 
         <?php
     $menuItems = [
-        ['label' => 'ERP', 'url' => ['/site/index'], 'linkOptions' => ['class' => 'ms-2 text-light  mb-1']],
+        ['label' => 'Biovera Europe BV', 'url' => ['/site/index'], 'linkOptions' => ['class' => 'ms-2 font-italic text-light  mb-1']],
         ['label' => 'Home', 'url' => ['/site/index'], 'linkOptions' => ['class' => 'ms-2 text-light mb-1']],
         // Add more menu items as needed.
     ];
@@ -207,7 +207,7 @@ AppAsset::register($this);
 
                 <nav class="nav flex-column">
                     <br><br><br>
-                    <h5 class="text-success">Sales</h5>
+                    <h5 class="text-danger">Sales</h5>
                     <div class="menu-item" onclick="toggleSubMenu('customer')">
                         <a href="#">Customer</a>
                         <i class="arrow down"></i>
@@ -218,21 +218,35 @@ AppAsset::register($this);
                         <a href="<?=Yii::$app->urlManager->createUrl(['customer/index'])?>">View Customer</a>
                     </div>
                     <br>
-                    <h5 class="text-success">Suppliers & <br> Raw materials</h5>
+                    <h5 class="text-danger">Suppliers & <br> Raw materials</h5>
 
-                    <div class="menu-item" onclick="toggleSubMenu('')">
+                    <div class="menu-item" onclick="toggleSubMenu('supplier')">
                         <a href="#">Supplier</a>
                         <i class="arrow down"></i>
                     </div>
-                    <div class="sub-menu" id="">
-                        <a href="<?=Yii::$app->urlManager->createUrl(['/add-'])?>">Add
+                    <div class="sub-menu" id="supplier">
+                        <a href="<?=Yii::$app->urlManager->createUrl(['supplier/create'])?>">Add Supplier
                             </a>
                         <br>
-                        <a href="<?=Yii::$app->urlManager->createUrl(['/view-'])?>">View
+                        <a href="<?=Yii::$app->urlManager->createUrl(['supplier/index'])?>">View Supplier
                             </a>
                     </div>
+
+                    <div class="menu-item" onclick="toggleSubMenu('delivery')">
+                        <a href="#">Delivery of a <br> Raw Material</a>
+                        <i class="arrow down"></i>
+                    </div>
+                    <div class="sub-menu" id="delivery">
+                        <a href="<?=Yii::$app->urlManager->createUrl(['delivery-raw-material/create'])?>">Add Delivery of <br> Raw Material
+                            </a>
+                        <br>
+                        <a href="<?=Yii::$app->urlManager->createUrl(['delivery-raw-material/index'])?>">View Delivery of <br> Raw Material
+                            </a>
+                    </div>
+
+
                      <br>
-                    <h5 class="text-success">Production</h5>
+                    <h5 class="text-danger">Production</h5>
 
                     <div class="menu-item" onclick="toggleSubMenu('product')">
                         <a href="#">Product</a>
@@ -258,8 +272,20 @@ AppAsset::register($this);
                             </a>
                     </div>
 
+                    <div class="menu-item" onclick="toggleSubMenu('productionbatch')">
+                        <a href="#">Production <br> Batch</a>
+                        <i class="arrow down"></i>
+                    </div>
+                    <div class="sub-menu" id="productionbatch">
+                            <a href="<?=Yii::$app->urlManager->createUrl(['production-batch/create'])?>">Add Production Batch
+                            </a>
+                        <br>
+                        <a href="<?=Yii::$app->urlManager->createUrl(['production-batch/index'])?>">View Production Batch
+                            </a>
+                    </div>
+
                     <br>
-                    <h5 class="text-success">Users</h5>
+                    <h5 class="text-danger">Users</h5>
 
                     <div class="menu-item" onclick="toggleSubMenu('user')">
                         <a href="#">User</a>
