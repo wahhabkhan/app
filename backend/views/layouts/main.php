@@ -207,7 +207,7 @@ AppAsset::register($this);
 
                 <nav class="nav flex-column">
                     <br><br><br>
-                    <h5 class="text-danger">Sales</h5>
+                    <h5 class="text-success">Sales</h5>
                     <div class="menu-item" onclick="toggleSubMenu('customer')">
                         <a href="#">Customer</a>
                         <i class="arrow down"></i>
@@ -217,8 +217,41 @@ AppAsset::register($this);
                         <br>
                         <a href="<?=Yii::$app->urlManager->createUrl(['customer/index'])?>">View Customer</a>
                     </div>
+                    
+                    <div class="menu-item" onclick="toggleSubMenu('order')">
+                        <a href="#">Order</a>
+                        <i class="arrow down"></i>
+                    </div>
+                    <div class="sub-menu" id="order">
+                        <a href="<?=Yii::$app->urlManager->createUrl(['orders/create'])?>">Add Order</a>
+                        <br>
+                        <a href="<?=Yii::$app->urlManager->createUrl(['orders/index'])?>">View order</a>
+                    </div>
+                    
+                    
+                    <div class="menu-item" onclick="toggleSubMenu('stockgoods')">
+                        <a href="#">Stock of Goods Ready for Sale</a>
+                        <i class="arrow down"></i>
+                    </div>
+                    <div class="sub-menu" id="stockgoods">
+                        <a href="<?=Yii::$app->urlManager->createUrl(['stock-goods/create'])?>">Add Stock of <br> Goods Ready for Sale</a>
+                        <br>
+                        <a href="<?=Yii::$app->urlManager->createUrl(['stock-goods/index'])?>">View Stock of Goods Ready for Sale</a>
+                    </div>
+
+                    <div class="menu-item" onclick="toggleSubMenu('manager')">
+                        <a href="#">Manager</a>
+                        <i class="arrow down"></i>
+                    </div>
+                    <div class="sub-menu" id="manager">
+                        <a href="<?=Yii::$app->urlManager->createUrl(['manager/create'])?>">Add Manager</a>
+                        <br>
+                        <a href="<?=Yii::$app->urlManager->createUrl(['manager/index'])?>">View Manager</a>
+                    </div>
+                    
                     <br>
-                    <h5 class="text-danger">Suppliers & <br> Raw materials</h5>
+
+                    <h5 class="text-success">Suppliers & <br> Raw materials</h5>
 
                     <div class="menu-item" onclick="toggleSubMenu('supplier')">
                         <a href="#">Supplier</a>
@@ -244,9 +277,19 @@ AppAsset::register($this);
                             </a>
                     </div>
 
+                    <div class="menu-item" onclick="toggleSubMenu('rmstock')">
+                        <a href="#">Raw  Material <br>  Stock</a>
+                        <i class="arrow down"></i>
+                    </div>
+                    <div class="sub-menu" id="rmstock">
+                        
+                        <a href="<?=Yii::$app->urlManager->createUrl(['delivery-raw-materials/index'])?>">View Raw <br> Material  Stock
+                            </a>
+                    </div>
+
 
                      <br>
-                    <h5 class="text-danger">Production</h5>
+                    <h5 class="text-success">Production</h5>
 
                     <div class="menu-item" onclick="toggleSubMenu('product')">
                         <a href="#">Product</a>
@@ -285,7 +328,7 @@ AppAsset::register($this);
                     </div>
 
                     <br>
-                    <h5 class="text-danger">Users</h5>
+                    <h5 class="text-success">Users</h5>
 
                     <div class="menu-item" onclick="toggleSubMenu('user')">
                         <a href="#">User</a>
