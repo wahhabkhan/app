@@ -8,7 +8,7 @@ use yii\widgets\ActiveForm;
 /** @var yii\widgets\ActiveForm $form */
 ?>
 
-<div class="delivery-raw-material-form">
+<div style="margin-left:180px" class="delivery-raw-material-form">
 
     <?php $form = ActiveForm::begin(); ?>
 

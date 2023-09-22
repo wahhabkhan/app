@@ -11,7 +11,7 @@ $this->params['breadcrumbs'][] = ['label' => 'Delivery Raw Materials', 'url' => 
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
-<div class="delivery-raw-material-view">
+<div style="margin-left:180px" class="delivery-raw-material-view">
 
     <h1><?= Html::encode($this->title) ?></h1>
 

@@ -44,10 +44,7 @@ return [
             'rules' => [
            
                 'defaultRoute' => 'site/stakeholder-counts',
-                'contact/view-contact-details' => 'contact/view-contact-details',
-                'contact/add-contact/<stakeholder_id:\d+>' => 'contact/add-contact',
-                'contact/view-contact' => 'contact/view-contact',
-
+    
 
             ],
         ],

@@ -13,7 +13,7 @@ use yii\grid\GridView;
 $this->title = 'Delivery Raw Materials';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="delivery-raw-material-index">
+<div style="margin-left:180px" class="delivery-raw-material-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
 

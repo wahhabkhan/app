@@ -17,7 +17,7 @@ class ProductionEmployeesWorkSearch extends ProductionEmployeesWork
     public function rules()
     {
         return [
-            [['work_id'], 'integer'],
+            [['work_id', 'production_employees_employees_id'], 'integer'],
             [['date', 'working_hours'], 'safe'],
         ];
     }
@@ -59,6 +59,7 @@ class ProductionEmployeesWorkSearch extends ProductionEmployeesWork
         // grid filtering conditions
         $query->andFilterWhere([
             'work_id' => $this->work_id,
+            'production_employees_employees_id' => $this->production_employees_employees_id,
         ]);
 
         $query->andFilterWhere(['like', 'date', $this->date])

@@ -94,7 +94,7 @@ class ProductionEmployeesController extends Controller
         $model = $this->findModel($employees_id);
 
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'employees_id' => $model->employees_id]);
+            return $this->redirect(['index', 'employees_id' => $model->employees_id]);
         }
 
         return $this->render('update', [

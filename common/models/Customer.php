@@ -34,6 +34,9 @@ class Customer extends \yii\db\ActiveRecord
     /**
      * {@inheritdoc}
      */
+
+    public $same_as_invoicing;
+
     public static function tableName()
     {
         return 'customer';
@@ -58,18 +61,18 @@ class Customer extends \yii\db\ActiveRecord
         return [
             'customer_id' => 'Customer ID',
             'company_name' => 'Company Name',
-            'i_street_name' => 'I Street Name',
-            'i_house_number' => 'I House Number',
-            'i_appendix' => 'I Appendix',
-            'i_zipcode' => 'I Zipcode',
-            'i_city' => 'I City',
-            'i_country' => 'I Country',
-            'd_street_name' => 'D Street Name',
-            'd_house_number' => 'D House Number',
-            'd_appendix' => 'D Appendix',
-            'd_zipcode' => 'D Zipcode',
-            'd_city' => 'D City',
-            'd_country' => 'D Country',
+            'i_street_name' => 'Street Name',
+            'i_house_number' => 'House Number',
+            'i_appendix' => 'Appendix',
+            'i_zipcode' => 'Zipcode',
+            'i_city' => 'City',
+            'i_country' => 'Country',
+            'd_street_name' => 'Street Name',
+            'd_house_number' => 'House Number',
+            'd_appendix' => 'Appendix',
+            'd_zipcode' => 'Zipcode',
+            'd_city' => 'City',
+            'd_country' => 'Country',
             'vat_number' => 'Vat Number',
             'coc_number' => 'Coc Number',
             'invoice_email' => 'Invoice Email',
@@ -87,4 +90,6 @@ class Customer extends \yii\db\ActiveRecord
     {
         return $this->hasMany(CustomerContact::class, ['customer_id' => 'customer_id']);
     }
+
+    
 }

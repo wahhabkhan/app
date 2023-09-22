@@ -17,12 +17,16 @@ use Yii;
  * @property string $appendix
  * @property string $zipcode
  * @property string $city
+ *
+ * @property ProductionEmployeesWork[] $productionEmployeesWorks
  */
 class ProductionEmployees extends \yii\db\ActiveRecord
 {
     /**
      * {@inheritdoc}
      */
+
+     
     public static function tableName()
     {
         return 'production_employees';
@@ -56,5 +60,15 @@ class ProductionEmployees extends \yii\db\ActiveRecord
             'zipcode' => 'Zipcode',
             'city' => 'City',
         ];
+    }
+
+    /**
+     * Gets query for [[ProductionEmployeesWorks]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getProductionEmployeesWorks()
+    {
+        return $this->hasMany(ProductionEmployeesWork::class, ['production_employees_employees_id' => 'employees_id']);
     }
 }

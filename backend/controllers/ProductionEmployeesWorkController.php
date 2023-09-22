@@ -70,6 +70,7 @@ class ProductionEmployeesWorkController extends Controller
         $model = new ProductionEmployeesWork();
 
         if ($this->request->isPost) {
+           
             if ($model->load($this->request->post()) && $model->save()) {
                 return $this->redirect(['view', 'work_id' => $model->work_id]);
             }
@@ -94,7 +95,7 @@ class ProductionEmployeesWorkController extends Controller
         $model = $this->findModel($work_id);
 
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'work_id' => $model->work_id]);
+            return $this->redirect(['index', 'work_id' => $model->work_id]);
         }
 
         return $this->render('update', [

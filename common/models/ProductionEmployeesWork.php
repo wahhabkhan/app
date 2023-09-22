@@ -10,6 +10,9 @@ use Yii;
  * @property int $work_id
  * @property string $date
  * @property string $working_hours
+ * @property int $production_employees_employees_id
+ *
+ * @property ProductionEmployees $productionEmployeesEmployees
  */
 class ProductionEmployeesWork extends \yii\db\ActiveRecord
 {
@@ -27,8 +30,10 @@ class ProductionEmployeesWork extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['date', 'working_hours'], 'required'],
+            [['date', 'working_hours', 'production_employees_employees_id'], 'required'],
+            [['production_employees_employees_id'], 'integer'],
             [['date', 'working_hours'], 'string', 'max' => 255],
+            [['production_employees_employees_id'], 'exist', 'skipOnError' => true, 'targetClass' => ProductionEmployees::class, 'targetAttribute' => ['production_employees_employees_id' => 'employees_id']],
         ];
     }
 
@@ -41,6 +46,17 @@ class ProductionEmployeesWork extends \yii\db\ActiveRecord
             'work_id' => 'Work ID',
             'date' => 'Date',
             'working_hours' => 'Working Hours',
+            'production_employees_employees_id' => 'Production Employee',
         ];
+    }
+
+    /**
+     * Gets query for [[ProductionEmployeesEmployees]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getProductionEmployeesEmployees()
+    {
+        return $this->hasOne(ProductionEmployees::class, ['employees_id' => 'production_employees_employees_id']);
     }
 }

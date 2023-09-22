@@ -94,7 +94,7 @@ class CustomerController extends Controller
         $model = $this->findModel($customer_id);
 
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'customer_id' => $model->customer_id]);
+            return $this->redirect(['index', 'customer_id' => $model->customer_id]);
         }
 
         return $this->render('update', [

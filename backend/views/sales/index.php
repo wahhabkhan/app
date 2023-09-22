@@ -13,7 +13,7 @@ use yii\grid\GridView;
 $this->title = 'Sales';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="sales-index">
+<div style="margin-left:180px" class="sales-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
 

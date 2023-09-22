@@ -71,7 +71,7 @@ class ProductRawController extends Controller
 
         if ($this->request->isPost) {
             if ($model->load($this->request->post()) && $model->save()) {
-                return $this->redirect(['view', 'product_raw_id' => $model->product_raw_id]);
+                return $this->redirect(['index', 'product_raw_id' => $model->product_raw_id]);
             }
         } else {
             $model->loadDefaultValues();
@@ -94,7 +94,7 @@ class ProductRawController extends Controller
         $model = $this->findModel($product_raw_id);
 
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'product_raw_id' => $model->product_raw_id]);
+            return $this->redirect(['index', 'product_raw_id' => $model->product_raw_id]);
         }
 
         return $this->render('update', [

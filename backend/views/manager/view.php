@@ -11,7 +11,7 @@ $this->params['breadcrumbs'][] = ['label' => 'Managers', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
-<div class="manager-view">
+<div style="margin-left:180px" class="manager-view">
 
     <h1><?= Html::encode($this->title) ?></h1>
 

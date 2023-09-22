@@ -206,19 +206,22 @@ AppAsset::register($this);
             <div class="sidebar" style="background : #EAFFF1">
 
                 <nav class="nav flex-column">
-                    <br><br>
-                    <div class="menu-item" onclick="toggleSubMenu('')">
-                        <a href="#">Sales</a>
+                    <br><br><br>
+                    <h5 class="text-success">Sales</h5>
+                    <div class="menu-item" onclick="toggleSubMenu('customer')">
+                        <a href="#">Customer</a>
                         <i class="arrow down"></i>
                     </div>
-                    <div class="sub-menu" id="">
-                        <a href="<?=Yii::$app->urlManager->createUrl(['/add-'])?>">Add </a>
+                    <div class="sub-menu" id="customer">
+                        <a href="<?=Yii::$app->urlManager->createUrl(['customer/create'])?>">Add Customer</a>
                         <br>
-                        <a href="<?=Yii::$app->urlManager->createUrl(['/view-'])?>">View </a>
+                        <a href="<?=Yii::$app->urlManager->createUrl(['customer/index'])?>">View Customer</a>
                     </div>
+                    <br>
+                    <h5 class="text-success">Suppliers & <br> Raw materials</h5>
 
                     <div class="menu-item" onclick="toggleSubMenu('')">
-                        <a href="#">Suppliers & Raw materials</a>
+                        <a href="#">Supplier</a>
                         <i class="arrow down"></i>
                     </div>
                     <div class="sub-menu" id="">
@@ -228,21 +231,38 @@ AppAsset::register($this);
                         <a href="<?=Yii::$app->urlManager->createUrl(['/view-'])?>">View
                             </a>
                     </div>
+                     <br>
+                    <h5 class="text-success">Production</h5>
 
-                    <div class="menu-item" onclick="toggleSubMenu('')">
-                        <a href="#">Production</a>
+                    <div class="menu-item" onclick="toggleSubMenu('product')">
+                        <a href="#">Product</a>
                         <i class="arrow down"></i>
                     </div>
-                    <div class="sub-menu" id="">
-                        <a href="<?=Yii::$app->urlManager->createUrl([''])?>">Add
+                    <div class="sub-menu" id="product">
+                        <a href="<?=Yii::$app->urlManager->createUrl(['product/create'])?>">Add Product
                             </a>
                         <br>
-                        <a href="<?=Yii::$app->urlManager->createUrl(['/'])?>">View
+                        <a href="<?=Yii::$app->urlManager->createUrl(['product/index'])?>">View Product
                             </a>
                     </div>
 
+                    <div class="menu-item" onclick="toggleSubMenu('productionemployees')">
+                        <a href="#">Production <br> Employee</a>
+                        <i class="arrow down"></i>
+                    </div>
+                    <div class="sub-menu" id="productionemployees">
+                            <a href="<?=Yii::$app->urlManager->createUrl(['production-employees/create'])?>">Add Production Employees
+                            </a>
+                        <br>
+                        <a href="<?=Yii::$app->urlManager->createUrl(['production-employees/index'])?>">View Production Employees
+                            </a>
+                    </div>
+
+                    <br>
+                    <h5 class="text-success">Users</h5>
+
                     <div class="menu-item" onclick="toggleSubMenu('user')">
-                        <a href="#">Users</a>
+                        <a href="#">User</a>
                         <i class="arrow down"></i>
                     </div>
                     <div class="sub-menu" id="user">

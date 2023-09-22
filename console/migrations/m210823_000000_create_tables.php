@@ -313,34 +313,41 @@ class m210823_000000_create_tables extends Migration
 
 
         -- -----------------------------------------------------
-        -- Table `app`.`production_employees`
+        -- Table `app_ms`.`production_employees`
         -- -----------------------------------------------------
         CREATE TABLE IF NOT EXISTS `app_ms`.`production_employees` (
-        `employees_id` INT(11) NOT NULL AUTO_INCREMENT,
-        `first_name` VARCHAR(255) NOT NULL,
-        `last_name` VARCHAR(255) NOT NULL,
-        `phone_number` VARCHAR(255) NOT NULL,
-        `email` VARCHAR(255) NOT NULL,
-        `street` VARCHAR(255) NOT NULL,
-        `house_number` VARCHAR(255) NOT NULL,
-        `appendix` VARCHAR(255) NOT NULL,
-        `zipcode` VARCHAR(255) NOT NULL,
-        `city` VARCHAR(255) NOT NULL,
-        PRIMARY KEY (`employees_id`))
-        ENGINE = InnoDB
-        DEFAULT CHARACTER SET = utf8mb4;
+          `employees_id` INT(11) NOT NULL AUTO_INCREMENT,
+          `first_name` VARCHAR(255) NOT NULL,
+       `last_name` VARCHAR(255) NOT NULL,
+       `phone_number` VARCHAR(255) NOT NULL,
+       `email` VARCHAR(255) NOT NULL,
+       `street` VARCHAR(255) NOT NULL,
+       `house_number` VARCHAR(255) NOT NULL,
+       `appendix` VARCHAR(255) NOT NULL,
+       `zipcode` VARCHAR(255) NOT NULL,
+       `city` VARCHAR(255) NOT NULL,
+       PRIMARY KEY (`employees_id`))
+       ENGINE = InnoDB
+       DEFAULT CHARACTER SET = utf8mb4;
 
 
-        -- -----------------------------------------------------
-        -- Table `app`.`production_employees_work`
-        -- -----------------------------------------------------
-        CREATE TABLE IF NOT EXISTS `app_ms`.`production_employees_work` (
+      -- -----------------------------------------------------
+      -- Table `app_ms`.`production_employees_work`
+      -- -----------------------------------------------------
+      CREATE TABLE IF NOT EXISTS `app_ms`.`production_employees_work` (
         `work_id` INT(11) NOT NULL AUTO_INCREMENT,
         `date` VARCHAR(255) NOT NULL,
-        `working_hours` VARCHAR(255) NOT NULL,
-        PRIMARY KEY (`work_id`))
-        ENGINE = InnoDB
-        DEFAULT CHARACTER SET = utf8mb4;
+      `working_hours` VARCHAR(255) NOT NULL,
+      `production_employees_employees_id` INT(11) NOT NULL,
+      PRIMARY KEY (`work_id`),
+      INDEX `fk_production_employees_work_production_employees1_idx` (`production_employees_employees_id` ASC) VISIBLE,
+      CONSTRAINT `fk_production_employees_work_production_employees1`
+        FOREIGN KEY (`production_employees_employees_id`)
+      REFERENCES `app_ms`.`production_employees` (`employees_id`)
+      ON DELETE NO ACTION
+      ON UPDATE NO ACTION)
+      ENGINE = InnoDB
+      DEFAULT CHARACTER SET = utf8mb4;
 
 
         -- -----------------------------------------------------

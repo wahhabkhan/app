@@ -1,31 +1,20 @@
 <?php
 
-use common\models\Product;
 use yii\helpers\Html;
-use yii\helpers\Url;
-use yii\grid\ActionColumn;
 use yii\grid\GridView;
 
-/** @var yii\web\View $this */
-/** @var common\models\ProductSearch $searchModel */
-/** @var yii\data\ActiveDataProvider $dataProvider */
+/* @var $this yii\web\View */
+/* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = 'Products';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="product-index">
+<div style="margin-left:180px" class="product-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <p>
-        <?= Html::a('Create Product', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
-
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
@@ -33,16 +22,34 @@ $this->params['breadcrumbs'][] = $this->title;
             'product_name',
             'barcode',
             'volume_or_weight',
-            'retial_price',
-            //'wholesale_price',
+            
+            
+
+            // Additional columns as needed...
+
             [
-                'class' => ActionColumn::className(),
-                'urlCreator' => function ($action, Product $model, $key, $index, $column) {
-                    return Url::toRoute([$action, 'product_id' => $model->product_id]);
-                 }
+                'class' => 'yii\grid\ActionColumn',
+                'template' => '{view} {update} {delete} {add-rm} {view-rm}',
+                'buttons' => [
+                    'add-rm' => function ($url, $model, $key) {
+                        return Html::a('Add Raw Material', ['product-raw/create', 'product_raw_id' => $model->product_id], ['class' => 'btn btn-primary']);
+                    },
+                    'view-rm' => function ($url, $model, $key) {
+                        return Html::a('View Raw Material', ['product-raw/index', 'product_raw_id' => $model->product_id], ['class' => 'btn btn-primary']);
+                    },
+                ],
+                'urlCreator' => function ($action, $model, $key, $index) {
+                    if ($action === 'view') {
+                        return ['product/view', 'product_id' => $model->product_id];
+                    }
+                    if ($action === 'update') {
+                        return ['product/update', 'product_id' => $model->product_id];
+                    }
+                    if ($action === 'delete') {
+                        return ['product/delete', 'product_id' => $model->product_id];
+                    }
+                },
             ],
         ],
     ]); ?>
-
-
 </div>
