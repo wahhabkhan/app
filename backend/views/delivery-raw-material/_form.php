@@ -2,7 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-
+use yii\jui\DatePicker;
 /** @var yii\web\View $this */
 /** @var common\models\DeliveryRawMaterial $model */
 /** @var yii\widgets\ActiveForm $form */
@@ -25,11 +25,15 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'date')->textInput() ?>
 
-    <?= $form->field($model, 'is_packaging_ok')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'is_packaging_ok')->radioList(['1' => 'Yes', '0' => 'No']) ?>
+
 
     <?= $form->field($model, 'batch_no')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'expiration_date')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'expiration_date')->widget(DatePicker::classname(), [
+    'options' => ['class' => 'form-control'],
+    'dateFormat' => 'yyyy-MM-dd', 
+]) ?>
 
     <?= $form->field($model, 'unit')->textInput() ?>
 
