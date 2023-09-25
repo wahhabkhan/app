@@ -41,9 +41,9 @@ $this->params['breadcrumbs'][] = $this->title;
                         return Html::a('Add Items / Products    ', ['order-items/create', 'order_items_id' => $model->order_id], ['class' => 'btn ms-4 btn-danger',]);
                     },
                     'view-pro' => function ($url, $model, $key) {
-                        return Html::a('View Items Purchased', ['order-items/index', 'order_id' => $model->order_id], ['class' => 'btn mt-2 btn-danger ',
-                        'style' => 'margin-left:85px',]);
+                        return Html::a('View Items Purchased', ['order-items/index', 'order_id' => $model->order_id], ['class' => 'btn mt-2 btn-danger', 'style' => 'margin-left:85px']);
                     },
+                    
                 ],      
                 'urlCreator' => function ($action, $model, $key, $index) {
                     if ($action === 'view') {

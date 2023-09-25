@@ -37,15 +37,10 @@ class OrderItemsController extends Controller
      *
      * @return string
      */
-    public function actionIndex($order_items_id = null)
+    public function actionIndex($order_id)
     {
         $searchModel = new OrderItemsSearch();
-    
-        // Use the provided $order_items_id to filter the records
-        if ($order_items_id !== null) {
-            $searchModel->order_items_id = $order_items_id;
-        }
-    
+        $searchModel->order_id = $order_id; // Ensure that you set the order_id
         $dataProvider = $searchModel->search($this->request->queryParams);
     
         return $this->render('index', [
