@@ -57,6 +57,7 @@ class SupplierContactController extends Controller
     {
         return $this->render('view', [
             'model' => $this->findModel($contact_id),
+            
         ]);
     }
 

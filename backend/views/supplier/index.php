@@ -11,7 +11,7 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div style="margin-left:180px" class="product-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <h2 class="text-danger text-center"><?= Html::encode($this->title) ?></h2>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -39,11 +39,11 @@ $this->params['breadcrumbs'][] = $this->title;
                     },
                     'add-raw' => function ($url, $model, $key) {
                         // Replace 'RawMaterialController/create' with the actual route for adding raw material
-                        return Html::a('Add Raw Material', ['supplier-raw-material/create', 'raw_id' => $model->supplier_id], ['class' => 'btn  btn-success']);
+                        return Html::a('Add Raw Material', ['supplier-raw-material/create', 'raw_id' => $model->supplier_id], ['class' => 'btn  btn-danger']);
                     },
                     'view-raw' => function ($url, $model, $key) {
                         // Replace 'RawMaterialViewController/index' with the actual route for viewing raw material
-                        return Html::a('View Raw Material', ['supplier-raw-material/index', 'raw_id' => $model->supplier_id], ['class' => 'btn btn-success']);
+                        return Html::a('View Raw Material', ['supplier-raw-material/index', 'raw_id' => $model->supplier_id], ['class' => 'btn btn-danger']);
                     },
                 ],
                 'urlCreator' => function ($action, $model, $key, $index) {

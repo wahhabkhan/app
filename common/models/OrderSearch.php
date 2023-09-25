@@ -17,9 +17,9 @@ class OrderSearch extends Order
     public function rules()
     {
         return [
-            [['order_id', 'date', 'invoice_number', 'company_name', 'street_name', 'house_number', 'appendix', 'zipcode', 'city', 'country', 'vat_number', 'discount', 'quantity', 'total'], 'integer'],
-            [['products'], 'safe'],
-            [['unit_price', 'sub_total'], 'number'],
+            [['order_id', 'invoice_number'], 'integer'],
+            [['date', 'company_name', 'street_name', 'house_number', 'appendix', 'zipcode', 'city', 'country', 'vat_number'], 'safe'],
+            [['discount'], 'number'],
         ];
     }
 
@@ -62,22 +62,17 @@ class OrderSearch extends Order
             'order_id' => $this->order_id,
             'date' => $this->date,
             'invoice_number' => $this->invoice_number,
-            'company_name' => $this->company_name,
-            'street_name' => $this->street_name,
-            'house_number' => $this->house_number,
-            'appendix' => $this->appendix,
-            'zipcode' => $this->zipcode,
-            'city' => $this->city,
-            'country' => $this->country,
-            'vat_number' => $this->vat_number,
             'discount' => $this->discount,
-            'quantity' => $this->quantity,
-            'unit_price' => $this->unit_price,
-            'sub_total' => $this->sub_total,
-            'total' => $this->total,
         ]);
 
-        $query->andFilterWhere(['like', 'products', $this->products]);
+        $query->andFilterWhere(['like', 'company_name', $this->company_name])
+            ->andFilterWhere(['like', 'street_name', $this->street_name])
+            ->andFilterWhere(['like', 'house_number', $this->house_number])
+            ->andFilterWhere(['like', 'appendix', $this->appendix])
+            ->andFilterWhere(['like', 'zipcode', $this->zipcode])
+            ->andFilterWhere(['like', 'city', $this->city])
+            ->andFilterWhere(['like', 'country', $this->country])
+            ->andFilterWhere(['like', 'vat_number', $this->vat_number]);
 
         return $dataProvider;
     }

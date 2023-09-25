@@ -6,12 +6,12 @@ use yii\grid\GridView;
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Customers';
+$this->title = 'Production Batches';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div style="margin-left:180px" class="production-batch-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <h2 class="text-danger text-center mt-3"><?= Html::encode($this->title) ?></h2>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,

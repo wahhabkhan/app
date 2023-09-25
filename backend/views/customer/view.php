@@ -27,14 +27,14 @@ $attributeLabels = [
     'd_country' => 'Delivery Country',
 ];
 ?>
-<div style="margin-left: 180px" class="customer-view">
+<div style="margin-left: 350px" class="customer-view w-50">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Update', ['update', 'customer_id' => $model->customer_id], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Update', ['update', 'customer_id' => $model->customer_id], ['class' => 'btn btn-danger']) ?>
         <?= Html::a('Delete', ['delete', 'customer_id' => $model->customer_id], [
-            'class' => 'btn btn-success',
+            'class' => 'btn btn-danger',
             'data' => [
                 'confirm' => 'Are you sure you want to delete this item?',
                 'method' => 'post',

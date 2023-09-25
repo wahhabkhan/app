@@ -35,10 +35,10 @@ class SupplierContact extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['first_name', 'last_name', 'position', 'email', 'phone_number1', 'phone_number2', 'phone_number3', 'supplier_id'], 'required'],
+        //    [['first_name', 'last_name', 'position', 'email', 'phone_number1', 'phone_number2', 'phone_number3'], 'required'],
             [['supplier_id'], 'integer'],
             [['first_name', 'last_name', 'position', 'email', 'phone_number1', 'phone_number2', 'phone_number3'], 'string', 'max' => 255],
-            [['supplier_id'], 'exist', 'skipOnError' => true, 'targetClass' => Supplier::class, 'targetAttribute' => ['supplier_id' => 'supplier_id']],
+           // [['supplier_id'], 'exist', 'skipOnError' => false, 'targetClass' => Supplier::class, 'targetAttribute' => ['supplier_id' => 'supplier_id']],
         ];
     }
 

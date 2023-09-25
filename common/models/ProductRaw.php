@@ -28,7 +28,7 @@ class ProductRaw extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['raw_material_name', 'unit', 'weight'], 'required'],
+         //   [['raw_material_name', 'unit', 'weight'], 'required'],
             [['raw_material_name', 'unit', 'weight'], 'string', 'max' => 255],
         ];
     }

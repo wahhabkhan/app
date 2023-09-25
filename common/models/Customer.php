@@ -35,7 +35,7 @@ class Customer extends \yii\db\ActiveRecord
      * {@inheritdoc}
      */
 
-    public $same_as_invoicing;
+    public $same_as_delivery;
 
     public static function tableName()
     {
@@ -48,7 +48,7 @@ class Customer extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['company_name', 'i_street_name', 'i_house_number', 'i_appendix', 'i_zipcode', 'i_city', 'i_country', 'd_street_name', 'd_house_number', 'd_appendix', 'd_zipcode', 'd_city', 'd_country', 'vat_number', 'coc_number', 'invoice_email', 'delivery_notes', 'notes'], 'required'],
+           // [['company_name', 'i_street_name', 'i_house_number', 'i_appendix', 'i_zipcode', 'i_city', 'i_country', 'd_street_name', 'd_house_number', 'd_appendix', 'd_zipcode', 'd_city', 'd_country', 'vat_number', 'coc_number', 'invoice_email', 'delivery_notes', 'notes'], 'required'],
             [['company_name', 'i_street_name', 'i_house_number', 'i_appendix', 'i_zipcode', 'i_city', 'i_country', 'd_street_name', 'd_house_number', 'd_appendix', 'd_zipcode', 'd_city', 'd_country', 'vat_number', 'coc_number', 'invoice_email', 'delivery_notes', 'notes'], 'string', 'max' => 255],
         ];
     }

@@ -27,7 +27,7 @@ class Sales extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['total_sales', 'total_outstanding'], 'required'],
+        //    [['total_sales', 'total_outstanding'], 'required'],
             [['total_sales', 'total_outstanding'], 'integer'],
         ];
     }

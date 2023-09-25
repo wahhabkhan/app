@@ -38,7 +38,7 @@ class ProductionEmployees extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['first_name', 'last_name', 'phone_number', 'email', 'street', 'house_number', 'appendix', 'zipcode', 'city'], 'required'],
+         //   [['first_name', 'last_name', 'phone_number', 'email', 'street', 'house_number', 'appendix', 'zipcode', 'city'], 'required'],
             [['first_name', 'last_name', 'phone_number', 'email', 'street', 'house_number', 'appendix', 'zipcode', 'city'], 'string', 'max' => 255],
         ];
     }

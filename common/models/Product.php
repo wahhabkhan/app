@@ -30,8 +30,9 @@ class Product extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['product_name', 'barcode', 'volume_or_weight', 'retial_price', 'wholesale_price'], 'required'],
-            [['product_name', 'barcode', 'volume_or_weight', 'retial_price', 'wholesale_price'], 'string', 'max' => 255],
+         //   [['product_name', 'barcode', 'volume_or_weight', 'retial_price', 'wholesale_price'], 'required'],
+            [['product_name', 'barcode', 'volume_or_weight'], 'string', 'max' => 255],
+            [['retial_price', 'wholesale_price' ], 'number']
         ];
     }
 

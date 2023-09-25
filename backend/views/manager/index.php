@@ -11,7 +11,7 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div style="margin-left:180px" class="manager-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <h2 class="text-center text-danger"><?= Html::encode($this->title) ?></h2>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,

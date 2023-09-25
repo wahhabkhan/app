@@ -32,7 +32,7 @@ class SupplierRawMaterial extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['raw_material_name', 'supplier_code', 'unit', 'low_stock', 'supplier_id'], 'required'],
+       //     [['raw_material_name', 'supplier_code', 'unit', 'low_stock', 'supplier_id'], 'required'],
             [['supplier_id'], 'integer'],
             [['raw_material_name', 'supplier_code', 'unit', 'low_stock'], 'string', 'max' => 255],
             [['supplier_id'], 'exist', 'skipOnError' => true, 'targetClass' => Supplier::class, 'targetAttribute' => ['supplier_id' => 'supplier_id']],

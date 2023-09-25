@@ -40,7 +40,7 @@ AppAsset::register($this);
         left: 0;
         bottom: 0;
         width: 200px;
-        background-color: light;
+        background-color: light ;
         padding: 20px;
         overflow-y: auto;
     }
@@ -112,6 +112,7 @@ AppAsset::register($this);
 
     .arrow.down {
         transform: translateY(-50%) rotate(45deg);
+        
     }
 
     .arrow.up {
@@ -133,24 +134,28 @@ AppAsset::register($this);
         /* Adjust this value to your desired font size */
         padding: 8px 0;
         /* Add padding to the top and bottom of the menu items */
-        margin: 4px 0;
+      
     }
 
 
     .nav a:hover {
-        color: green;
+        color: blue;
         
     }
 
     .menu-item:hover .arrow {
-        border-color: green;
+        border-color: blue;
         
     }
 
     body {
         font-family: Arial, sans-serif;
-        padding: 20px;
     }
+    .custom-icon {
+        color: red !important;
+}
+
+
     </style>
     <?php $this->head() ?>
 </head>
@@ -163,7 +168,7 @@ AppAsset::register($this);
     NavBar::begin([
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
-            'class' => 'navbar navbar-expand-md hover navbar-dark bg-success fixed-top', // Add justify-content-between class
+            'class' => 'navbar navbar-expand-md hover navbar-dark bg-primary fixed-top', // Add justify-content-between class
         ],
     ]);
     ?>
@@ -172,7 +177,7 @@ AppAsset::register($this);
         <?php
     $menuItems = [
         ['label' => 'Biovera Europe BV', 'url' => ['/site/index'], 'linkOptions' => ['class' => 'ms-2 font-italic text-light  mb-1']],
-        ['label' => 'Home', 'url' => ['/site/index'], 'linkOptions' => ['class' => 'ms-2 text-light mb-1']],
+        ['label' => 'Home', 'url' => ['/site/index'], 'linkOptions' => ['class' => 'ms-3 text-light mb-1']],
         // Add more menu items as needed.
     ];
 
@@ -184,7 +189,7 @@ AppAsset::register($this);
             'label' => 'Logout (' . Yii::$app->user->identity->username . ')',
             'url' => ['/site/logout'],
             'linkOptions' => [
-                'class' => 'logout text-light mb-1 ms-1',
+                'class' => 'logout text-light mb-1 ms-3',
                 'data-method' => 'post', // This is the key part for sending a POST request
             ],
         ];
@@ -203,141 +208,126 @@ AppAsset::register($this);
     <main role="main" class="flex-shrink-0">
         <div class="container">
             <?= Alert::widget() ?>
-            <div class="sidebar" style="background : #EAFFF1">
+            <div class="sidebar" style="background : light-green">
 
                 <nav class="nav flex-column">
-                    <br><br><br>
-                    <h5 class="text-success">Sales</h5>
+                    <br><br>
+                    
                     <div class="menu-item" onclick="toggleSubMenu('customer')">
-                        <a href="#">Customer</a>
+                        <a class="text-dark font-weight-bold" href="#">Customer</a>
                         <i class="arrow down"></i>
                     </div>
                     <div class="sub-menu" id="customer">
-                        <a href="<?=Yii::$app->urlManager->createUrl(['customer/create'])?>">Add Customer</a>
+                        <a class="btn btn-danger p-2 text-light font-weight-bold" href="<?=Yii::$app->urlManager->createUrl(['customer/create'])?>">Add Customer</a>
                         <br>
-                        <a href="<?=Yii::$app->urlManager->createUrl(['customer/index'])?>">View Customer</a>
+                        <a class="btn btn-danger p-2 text-light font-weight-bold mt-1" href="<?=Yii::$app->urlManager->createUrl(['customer/index'])?>">View Customer</a>
                     </div>
                     
                     <div class="menu-item" onclick="toggleSubMenu('order')">
-                        <a href="#">Order</a>
+                        <a class="text-dark font-weight-bold" href="#">Order</a>
                         <i class="arrow down"></i>
                     </div>
                     <div class="sub-menu" id="order">
-                        <a href="<?=Yii::$app->urlManager->createUrl(['orders/create'])?>">Add Order</a>
+                        <a class="btn btn-danger p-2 text-light font-weight-bold" href="<?=Yii::$app->urlManager->createUrl(['order/customer-type-selection'])?>">Add Order</a>
                         <br>
-                        <a href="<?=Yii::$app->urlManager->createUrl(['orders/index'])?>">View order</a>
+                        <a class="btn btn-danger p-2 text-light font-weight-bold mt-1" href="<?=Yii::$app->urlManager->createUrl(['order/index'])?>">View Order</a>
                     </div>
                     
                     
                     <div class="menu-item" onclick="toggleSubMenu('stockgoods')">
-                        <a href="#">Stock of Goods Ready for Sale</a>
+                        <a class="text-dark font-weight-bold" href="#">Stock of Goods Ready for Sale</a>
                         <i class="arrow down"></i>
                     </div>
                     <div class="sub-menu" id="stockgoods">
-                        <a href="<?=Yii::$app->urlManager->createUrl(['stock-goods/create'])?>">Add Stock of <br> Goods Ready for Sale</a>
+                        <a class="btn btn-danger p-2 text-light font-weight-bold" href="<?=Yii::$app->urlManager->createUrl(['stock-goods/create'])?>">Add Stock</a>
                         <br>
-                        <a href="<?=Yii::$app->urlManager->createUrl(['stock-goods/index'])?>">View Stock of Goods Ready for Sale</a>
+                        <a class="btn btn-danger p-2 text-light font-weight-bold mt-1" href="<?=Yii::$app->urlManager->createUrl(['stock-goods/index'])?>">View Stock</a>
                     </div>
 
                     <div class="menu-item" onclick="toggleSubMenu('manager')">
-                        <a href="#">Manager</a>
+                        <a class="text-dark font-weight-bold" href="#">Manager</a>
                         <i class="arrow down"></i>
                     </div>
                     <div class="sub-menu" id="manager">
-                        <a href="<?=Yii::$app->urlManager->createUrl(['manager/create'])?>">Add Manager</a>
+                        <a class="btn btn-danger p-2 text-light font-weight-bold" href="<?=Yii::$app->urlManager->createUrl(['manager/create'])?>">Add Manager</a>
                         <br>
-                        <a href="<?=Yii::$app->urlManager->createUrl(['manager/index'])?>">View Manager</a>
+                        <a class="btn btn-danger p-2 text-light font-weight-bold mt-1" href="<?=Yii::$app->urlManager->createUrl(['manager/index'])?>">View Manager</a>
                     </div>
-                    
-                    <br>
+                
 
-                    <h5 class="text-success">Suppliers & <br> Raw materials</h5>
+                
 
-                    <div class="menu-item" onclick="toggleSubMenu('supplier')">
-                        <a href="#">Supplier</a>
+                    <div  class="menu-item" onclick="toggleSubMenu('supplier')">
+                        <a class="text-dark font-weight-bold" href="#">Supplier</a>
                         <i class="arrow down"></i>
                     </div>
                     <div class="sub-menu" id="supplier">
-                        <a href="<?=Yii::$app->urlManager->createUrl(['supplier/create'])?>">Add Supplier
+                        <a class="btn btn-danger p-2 text-light font-weight-bold" href="<?=Yii::$app->urlManager->createUrl(['supplier/create'])?>">Add Supplier
                             </a>
                         <br>
-                        <a href="<?=Yii::$app->urlManager->createUrl(['supplier/index'])?>">View Supplier
+                        <a class="btn btn-danger p-2 text-light font-weight-bold mt-1" href="<?=Yii::$app->urlManager->createUrl(['supplier/index'])?>">View Supplier
                             </a>
                     </div>
 
                     <div class="menu-item" onclick="toggleSubMenu('delivery')">
-                        <a href="#">Delivery of a <br> Raw Material</a>
+                        <a class="text-dark font-weight-bold" href="#">Delivery of a <br> Raw Material</a>
                         <i class="arrow down"></i>
                     </div>
                     <div class="sub-menu" id="delivery">
-                        <a href="<?=Yii::$app->urlManager->createUrl(['delivery-raw-material/create'])?>">Add Delivery of <br> Raw Material
+                        <a class="btn btn-danger p-2 text-light font-weight-bold" href="<?=Yii::$app->urlManager->createUrl(['delivery-raw-material/create'])?>">Add Delivery
                             </a>
                         <br>
-                        <a href="<?=Yii::$app->urlManager->createUrl(['delivery-raw-material/index'])?>">View Delivery of <br> Raw Material
-                            </a>
-                    </div>
-
-                    <div class="menu-item" onclick="toggleSubMenu('rmstock')">
-                        <a href="#">Raw  Material <br>  Stock</a>
-                        <i class="arrow down"></i>
-                    </div>
-                    <div class="sub-menu" id="rmstock">
-                        
-                        <a href="<?=Yii::$app->urlManager->createUrl(['delivery-raw-materials/index'])?>">View Raw <br> Material  Stock
+                        <a class="btn btn-danger p-2 text-light font-weight-bold mt-1" href="<?=Yii::$app->urlManager->createUrl(['delivery-raw-material/index'])?>">View Delivery
                             </a>
                     </div>
 
 
-                     <br>
-                    <h5 class="text-success">Production</h5>
 
                     <div class="menu-item" onclick="toggleSubMenu('product')">
-                        <a href="#">Product</a>
+                        <a class="text-dark font-weight-bold" href="#">Product</a>
                         <i class="arrow down"></i>
                     </div>
                     <div class="sub-menu" id="product">
-                        <a href="<?=Yii::$app->urlManager->createUrl(['product/create'])?>">Add Product
+                        <a class="btn btn-danger p-2 text-light font-weight-bold" href="<?=Yii::$app->urlManager->createUrl(['product/create'])?>">Add Product
                             </a>
                         <br>
-                        <a href="<?=Yii::$app->urlManager->createUrl(['product/index'])?>">View Product
+                        <a class="btn btn-danger p-2 text-light font-weight-bold mt-1" href="<?=Yii::$app->urlManager->createUrl(['product/index'])?>">View Product
                             </a>
                     </div>
 
                     <div class="menu-item" onclick="toggleSubMenu('productionemployees')">
-                        <a href="#">Production <br> Employee</a>
+                        <a class="text-dark font-weight-bold" href="#">Production <br> Employee</a>
                         <i class="arrow down"></i>
                     </div>
                     <div class="sub-menu" id="productionemployees">
-                            <a href="<?=Yii::$app->urlManager->createUrl(['production-employees/create'])?>">Add Production Employees
+                            <a class="btn btn-danger p-2 text-light font-weight-bold" href="<?=Yii::$app->urlManager->createUrl(['production-employees/create'])?>">Add Employees
                             </a>
                         <br>
-                        <a href="<?=Yii::$app->urlManager->createUrl(['production-employees/index'])?>">View Production Employees
+                        <a class="btn btn-danger p-2 text-light font-weight-bold mt-1" href="<?=Yii::$app->urlManager->createUrl(['production-employees/index'])?>">View Employees
                             </a>
                     </div>
 
                     <div class="menu-item" onclick="toggleSubMenu('productionbatch')">
-                        <a href="#">Production <br> Batch</a>
+                        <a class="text-dark font-weight-bold" href="#">Production <br> Batch</a>
                         <i class="arrow down"></i>
                     </div>
                     <div class="sub-menu" id="productionbatch">
-                            <a href="<?=Yii::$app->urlManager->createUrl(['production-batch/create'])?>">Add Production Batch
+                            <a class="btn btn-danger p-2 text-light font-weight-bold" href="<?=Yii::$app->urlManager->createUrl(['production-batch/create'])?>">Add Batch
                             </a>
                         <br>
-                        <a href="<?=Yii::$app->urlManager->createUrl(['production-batch/index'])?>">View Production Batch
+                        <a class="btn btn-danger p-2 text-light font-weight-bold mt-1" href="<?=Yii::$app->urlManager->createUrl(['production-batch/index'])?>">View Batch
                             </a>
                     </div>
 
-                    <br>
-                    <h5 class="text-success">Users</h5>
 
                     <div class="menu-item" onclick="toggleSubMenu('user')">
-                        <a href="#">User</a>
+                        <a class="text-dark font-weight-bold" href="#">User</a>
                         <i class="arrow down"></i>
                     </div>
                     <div class="sub-menu" id="user">
-                        <a href="<?=Yii::$app->urlManager->createUrl(['user/add-user'])?>">Add User</a>
+                        <a class="btn btn-danger p-2 text-light font-weight-bold" href="<?=Yii::$app->urlManager->createUrl(['user/add-user'])?>">Add User</a>
                         <br>
-                        <a href="<?=Yii::$app->urlManager->createUrl(['user/view-user'])?>">View User</a>
+                        <a class="btn btn-danger p-2 text-light font-weight-bold mt-1" href="<?=Yii::$app->urlManager->createUrl(['user/view-user'])?>">View User</a>
                     </div>
                 </nav>
 

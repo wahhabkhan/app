@@ -13,14 +13,14 @@ $this->params['breadcrumbs'][] = $this->title;
 
 
 ?>
-<div style="margin-left:180px" class="production-batch-view">
+<div style="margin-left:380px" class="production-batch-view w-50">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Update', ['update', 'batch_id' => $model->batch_id], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Update', ['update', 'batch_id' => $model->batch_id], ['class' => 'btn btn-danger']) ?>
         <?= Html::a('Delete', ['delete', 'batch_id' => $model->batch_id], [
-            'class' => 'btn btn-success',
+            'class' => 'btn btn-danger',
             'data' => [
                 'confirm' => 'Are you sure you want to delete this item?',
                 'method' => 'post',

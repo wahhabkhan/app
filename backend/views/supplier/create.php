@@ -5,13 +5,13 @@ use yii\helpers\Html;
 /** @var yii\web\View $this */
 /** @var common\models\Supplier $model */
 
-$this->title = 'Create Supplier';
+$this->title = 'Add Supplier';
 $this->params['breadcrumbs'][] = ['label' => 'Suppliers', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="supplier-create">
 
-    <h1 style="margin-left:180px"><?= Html::encode($this->title) ?></h1>
+    <h3 class="text-danger text-center" style="margin-left:0px"><?= Html::encode($this->title) ?></h3>
 
     <?= $this->render('_form', [
         'model' => $model,

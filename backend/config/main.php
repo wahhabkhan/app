@@ -44,8 +44,10 @@ return [
             'rules' => [
            
                 'defaultRoute' => 'site/stakeholder-counts',
+                '/order/fetch-customer-info' => 'order/fetch-customer-info', // Adjust as needed
     
-
+                'order/customer-type-selection' => 'order/customer-type-selection',
+                'order/existing-customers' => 'order/existing-customers',
             ],
         ],
         

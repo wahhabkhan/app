@@ -30,7 +30,7 @@ class ProductionEmployeesWork extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['date', 'working_hours', 'production_employees_employees_id'], 'required'],
+         //   [['date', 'working_hours', 'production_employees_employees_id'], 'required'],
             [['production_employees_employees_id'], 'integer'],
             [['date', 'working_hours'], 'string', 'max' => 255],
             [['production_employees_employees_id'], 'exist', 'skipOnError' => true, 'targetClass' => ProductionEmployees::class, 'targetAttribute' => ['production_employees_employees_id' => 'employees_id']],

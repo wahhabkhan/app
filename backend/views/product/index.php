@@ -11,7 +11,7 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div style="margin-left:180px" class="product-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <h2 class="text-danger text-center"><?= Html::encode($this->title) ?></h2>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -32,10 +32,10 @@ $this->params['breadcrumbs'][] = $this->title;
                 'template' => '{view} {update} {delete} {add-rm} {view-rm}',
                 'buttons' => [
                     'add-rm' => function ($url, $model, $key) {
-                        return Html::a('Add Raw Material', ['product-raw/create', 'product_raw_id' => $model->product_id], ['class' => 'btn btn-primary']);
+                        return Html::a('Add Raw Material', ['product-raw/create', 'product_raw_id' => $model->product_id], ['class' => 'btn btn-danger']);
                     },
                     'view-rm' => function ($url, $model, $key) {
-                        return Html::a('View Raw Material', ['product-raw/index', 'product_raw_id' => $model->product_id], ['class' => 'btn btn-primary']);
+                        return Html::a('View Raw Material', ['product-raw/index', 'product_raw_id' => $model->product_id], ['class' => 'btn btn-danger']);
                     },
                 ],
                 'urlCreator' => function ($action, $model, $key, $index) {

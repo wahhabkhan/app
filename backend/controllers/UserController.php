@@ -10,16 +10,14 @@ class UserController extends Controller
  {
     public function actionViewUser()
  {
-        if ( Yii::$app->user->can( 'userview' ) ) {
+        
             $models = Users::find()->all();
 
             return $this->render( 'view-user', [
                 'models' => $models,
 
             ] );
-        } else {
-            throw new ForbiddenHttpException;
-        }
+      
     }
 
     public function actionViewUserDetails( $id )
@@ -34,7 +32,6 @@ class UserController extends Controller
 
     public function actionAddUser()
  {
-        if ( Yii::$app->user->can( 'create' ) ) {
             $model = new Users();
 
             if ( $model->load( Yii::$app->request->post() ) ) {
@@ -50,15 +47,12 @@ class UserController extends Controller
             return $this->render( 'add-user', [
                 'model' => $model,
             ] );
-        } else {
-            throw new ForbiddenHttpException;
-        }
+        
 
     }
 
     public function actionUpdate( $id )
  {
-        if ( Yii::$app->user->can( 'update' ) ) {
             $model = $this->findModel( $id );
             $model->password_hash = ''; 
             
@@ -81,21 +75,17 @@ class UserController extends Controller
         return $this->render('update', [
             'model' => $model,
         ]);
-    } else {
-        throw new ForbiddenHttpException;
-    }
+    
     }
     
 
     public function actionDelete($id)
     {
-        if ( Yii::$app->user->can( 'delete' ) ) {
+
         $this->findModel($id)->delete();
 
         return $this->redirect(['view-user']);
-    } else {
-        throw new ForbiddenHttpException;
-    }
+    
     }
 
     protected function findModel($id)
@@ -106,5 +96,4 @@ class UserController extends Controller
 
         throw new NotFoundHttpException('The requested page does not exist.' );
                 }
-
-            }
+ }

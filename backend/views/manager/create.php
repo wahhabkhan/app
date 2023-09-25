@@ -11,7 +11,7 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="manager-create">
 
-    <h1 style="margin-left:180px"><?= Html::encode($this->title) ?></h1>
+    <h3 class="text-danger text-center mt-4" style="margin-left:180px"><?= Html::encode($this->title) ?></h3>
 
     <?= $this->render('_form', [
         'model' => $model,

@@ -39,16 +39,6 @@ use yii\widgets\ActiveForm;
 
     <?php // echo $form->field($model, 'discount') ?>
 
-    <?php // echo $form->field($model, 'products') ?>
-
-    <?php // echo $form->field($model, 'quantity') ?>
-
-    <?php // echo $form->field($model, 'unit_price') ?>
-
-    <?php // echo $form->field($model, 'sub_total') ?>
-
-    <?php // echo $form->field($model, 'total') ?>
-
     <div class="form-group">
         <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>
         <?= Html::resetButton('Reset', ['class' => 'btn btn-outline-secondary']) ?>

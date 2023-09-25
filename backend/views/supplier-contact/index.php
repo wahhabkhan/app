@@ -11,7 +11,7 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div style="margin-left:180px" class="customer-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <h2 class="text-center text-danger"><?= Html::encode($this->title) ?></h2>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -29,13 +29,13 @@ $this->params['breadcrumbs'][] = $this->title;
                 'template' => '{view} {update} {delete}',
                 'urlCreator' => function ($action, $model, $key, $index) {
                     if ($action === 'view') {
-                        return ['supplier_contact/view', 'contact_id' => $model->contact_id];
+                        return ['supplier-contact/view', 'contact_id' => $model->contact_id];
                     }
                     if ($action === 'update') {
-                        return ['supplier_contact/update', 'contact_id' => $model->contact_id];
+                        return ['supplier-contact/update', 'contact_id' => $model->contact_id];
                     }
                     if ($action === 'delete') {
-                        return ['supplier_contact/delete', 'contact_id' => $model->contact_id];
+                        return ['supplier-contact/delete', 'contact_id' => $model->contact_id];
                     }
                 },
             ],

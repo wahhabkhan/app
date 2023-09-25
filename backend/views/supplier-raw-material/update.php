@@ -12,7 +12,7 @@ $this->params['breadcrumbs'][] = 'Update';
 ?>
 <div   class="supplier-raw-material-update">
 
-    <h1 style="margin-left:180px"><?= Html::encode($this->title) ?></h1>
+    <h3 class="text-danger mt-4" style="margin-left:350px"><?= Html::encode($this->title) ?></h3>
 
     <?= $this->render('_form', [
         'model' => $model,

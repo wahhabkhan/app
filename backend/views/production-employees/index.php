@@ -11,7 +11,7 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div style="margin-left:180px" class="productionemployee-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <h3 class="text-danger text-center mt-4"><?= Html::encode($this->title) ?></h3>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -33,10 +33,10 @@ $this->params['breadcrumbs'][] = $this->title;
                 'template' => '{view} {update} {delete} {add-work} {view-work}',
                 'buttons' => [
                     'add-work' => function ($url, $model, $key) {
-                        return Html::a('Add Working Hours', ['production-employees-work/create', 'work_id' => $model->employees_id], ['class' => 'btn btn-primary']);
+                        return Html::a('Add Working Hours', ['production-employees-work/create', 'work_id' => $model->employees_id], ['class' => 'btn btn-danger']);
                     },
                     'view-work' => function ($url, $model, $key) {
-                        return Html::a('View Working Hours', ['production-employees-work/index', 'work_id' => $model->employees_id], ['class' => 'btn btn-primary']);
+                        return Html::a('View Working Hours', ['production-employees-work/index', 'work_id' => $model->employees_id], ['class' => 'btn btn-danger']);
                     },
                 ],
                 'urlCreator' => function ($action, $model, $key, $index) {

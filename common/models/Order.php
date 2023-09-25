@@ -8,22 +8,19 @@ use Yii;
  * This is the model class for table "order".
  *
  * @property int $order_id
- * @property int $date
+ * @property string $date
  * @property int $invoice_number
- * @property int $company_name
- * @property int $street_name
- * @property int $house_number
- * @property int $appendix
- * @property int $zipcode
- * @property int $city
- * @property int $country
- * @property int $vat_number
- * @property int $discount
- * @property string $products
- * @property int $quantity
- * @property float $unit_price
- * @property float $sub_total
- * @property int $total
+ * @property string $company_name
+ * @property string $street_name
+ * @property string $house_number
+ * @property string $appendix
+ * @property string $zipcode
+ * @property string $city
+ * @property string $country
+ * @property string $vat_number
+ * @property float $discount
+ *
+ * @property OrderItems[] $orderItems
  */
 class Order extends \yii\db\ActiveRecord
 {
@@ -41,10 +38,11 @@ class Order extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['date', 'invoice_number', 'company_name', 'street_name', 'house_number', 'appendix', 'zipcode', 'city', 'country', 'vat_number', 'discount', 'products', 'quantity', 'unit_price', 'sub_total', 'total'], 'required'],
-            [['date', 'invoice_number', 'company_name', 'street_name', 'house_number', 'appendix', 'zipcode', 'city', 'country', 'vat_number', 'discount', 'quantity', 'total'], 'integer'],
-            [['unit_price', 'sub_total'], 'number'],
-            [['products'], 'string', 'max' => 255],
+           // [['date', 'invoice_number', 'company_name', 'street_name', 'house_number', 'appendix', 'zipcode', 'city', 'country', 'vat_number', 'discount'], 'required'],
+            [['date'], 'safe'],
+            [['invoice_number'], 'integer'],
+            [['discount'], 'number'],
+            [['company_name', 'street_name', 'house_number', 'appendix', 'zipcode', 'city', 'country', 'vat_number'], 'string', 'max' => 255],
         ];
     }
 
@@ -66,11 +64,16 @@ class Order extends \yii\db\ActiveRecord
             'country' => 'Country',
             'vat_number' => 'Vat Number',
             'discount' => 'Discount',
-            'products' => 'Products',
-            'quantity' => 'Quantity',
-            'unit_price' => 'Unit Price',
-            'sub_total' => 'Sub Total',
-            'total' => 'Total',
         ];
+    }
+
+    /**
+     * Gets query for [[OrderItems]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getOrderItems()
+    {
+        return $this->hasMany(OrderItems::class, ['order_id' => 'order_id']);
     }
 }

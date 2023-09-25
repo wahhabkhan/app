@@ -12,12 +12,12 @@ $this->params['breadcrumbs'][] = ['label' => 'Supplier Contacts', 'url' => ['ind
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
-<div style="margin-left:180px" class="supplier-contact-view">
+<div style="margin-left:380px" class="supplier-contact-view w-50">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Update', ['update', 'contact_id' => $model->contact_id], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('Update', ['update', 'contact_id' => $model->contact_id], ['class' => 'btn btn-danger']) ?>
         <?= Html::a('Delete', ['delete', 'contact_id' => $model->contact_id], [
             'class' => 'btn btn-danger',
             'data' => [
@@ -38,7 +38,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'phone_number1',
             'phone_number2',
             'phone_number3',
-            'supplier_id',
+            //'supplier_id',
         ],
     ]) ?>
 

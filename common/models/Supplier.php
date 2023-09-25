@@ -38,7 +38,7 @@ class Supplier extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['company_name', 'street_name', 'house_number', 'appendix', 'zipcode', 'city', 'country', 'vat_number', 'coc_number', 'email', 'notes'], 'required'],
+          //  [['company_name', 'street_name', 'house_number', 'appendix', 'zipcode', 'city', 'country', 'vat_number', 'coc_number', 'email', 'notes'], 'required'],
             [['company_name', 'street_name', 'house_number', 'appendix', 'zipcode', 'city', 'country', 'vat_number', 'coc_number', 'email', 'notes'], 'string', 'max' => 255],
         ];
     }

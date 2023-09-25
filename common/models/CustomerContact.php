@@ -35,7 +35,7 @@ class CustomerContact extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['first_name', 'last_name', 'position', 'email', 'phone_number1', 'phone_number2', 'phone_number3', 'customer_id'], 'required'],
+        //    [['first_name', 'last_name', 'position', 'email', 'phone_number1', 'phone_number2', 'phone_number3', 'customer_id'], 'required'],
             [['customer_id'], 'integer'],
             [['first_name', 'last_name', 'position', 'email', 'phone_number1', 'phone_number2', 'phone_number3'], 'string', 'max' => 255],
             [['customer_id'], 'exist', 'skipOnError' => true, 'targetClass' => Customer::class, 'targetAttribute' => ['customer_id' => 'customer_id']],

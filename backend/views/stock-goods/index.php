@@ -9,9 +9,9 @@ use yii\grid\GridView;
 $this->title = 'Stock of  Goods Ready for Sale';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div style="margin-left:180px" class="stockgoods-index">
+<div style="margin-left:180px" class="stockgoods-index ">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <h2 class="text-center text-danger"><?= Html::encode($this->title) ?></h2>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,

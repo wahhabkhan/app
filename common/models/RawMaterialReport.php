@@ -27,7 +27,7 @@ class RawMaterialReport extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['start_date', 'end_date'], 'required'],
+         //   [['start_date', 'end_date'], 'required'],
             [['start_date', 'end_date'], 'safe'],
         ];
     }

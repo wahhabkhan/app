@@ -27,7 +27,7 @@ class StockGoods extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['product_name', 'count'], 'required'],
+        //    [['product_name', 'count'], 'required'],
             [['count'], 'integer'],
             [['product_name'], 'string', 'max' => 255],
         ];

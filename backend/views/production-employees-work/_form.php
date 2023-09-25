@@ -15,7 +15,7 @@ $employees = ProductionEmployees::find()->all();
 $employeesList = ArrayHelper::map($employees, 'employees_id', 'first_name');
 ?>
 
-<div style="margin-left:180px"  class="production-employees-work-form">
+<div style="margin-left:430px"  class="production-employees-work-form w-25 mt-3">
 
     <?php $form = ActiveForm::begin(); ?>
 
@@ -32,7 +32,7 @@ $employeesList = ArrayHelper::map($employees, 'employees_id', 'first_name');
                ) ?>
 
     <div class="form-group">
-        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton('Save', ['class' => 'btn btn-danger']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

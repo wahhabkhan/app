@@ -34,7 +34,7 @@ class DeliveryRawMaterial extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['supplier_company_name', 'raw_material_name', 'date', 'is_packaging_ok', 'batch_no', 'expiration_date', 'unit', 'total_units', 'price_per_unit'], 'required'],
+          //  [['supplier_company_name', 'raw_material_name', 'date', 'is_packaging_ok', 'batch_no', 'expiration_date', 'unit', 'total_units', 'price_per_unit'], 'required'],
             [['date'], 'safe'],
             [['is_packaging_ok'], 'boolean'],
             [['supplier_company_name', 'raw_material_name',  'batch_no', 'expiration_date','unit', 'total_units', 'price_per_unit'], 'string', 'max' => 255],

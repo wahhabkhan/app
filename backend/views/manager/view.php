@@ -11,14 +11,14 @@ $this->params['breadcrumbs'][] = ['label' => 'Managers', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
-<div style="margin-left:180px" class="manager-view">
+<div style="margin-left:380px" class="manager-view w-50">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Update', ['update', 'manager_id' => $model->manager_id], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Update', ['update', 'manager_id' => $model->manager_id], ['class' => 'btn btn-danger']) ?>
         <?= Html::a('Delete', ['delete', 'manager_id' => $model->manager_id], [
-            'class' => 'btn btn-success',
+            'class' => 'btn btn-danger',
             'data' => [
                 'confirm' => 'Are you sure you want to delete this item?',
                 'method' => 'post',

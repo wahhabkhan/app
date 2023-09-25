@@ -3,6 +3,7 @@
 namespace backend\controllers;
 
 use common\models\Order;
+use common\models\Customer;
 use common\models\OrderSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -68,20 +69,40 @@ class OrderController extends Controller
     public function actionCreate()
     {
         $model = new Order();
-
+        $model->invoice_number = $this->generateInvoiceNumber();
+    
         if ($this->request->isPost) {
             if ($model->load($this->request->post()) && $model->save()) {
-                return $this->redirect(['view', 'order_id' => $model->order_id]);
+                // Redirect to the order items create action with the order_id
+                return $this->redirect(['/order-items/create', 'order_id' => $model->order_id]);
             }
         } else {
             $model->loadDefaultValues();
         }
-
+    
         return $this->render('create', [
             'model' => $model,
         ]);
     }
+    
+    private function generateInvoiceNumber()
+    {
+        // Generate a unique invoice number based on your requirements
+        // You can use your own logic to generate the invoice number here
+        // For example, you can generate a random number or use a specific format
+        return rand(1000000000, 9999999999); // Generates a random 10-digit number
+    }
 
+    public function actionCustomerTypeSelection()
+    {
+        return $this->render('customer-type-selection');
+    }
+
+public function actionExistingCustomers()
+{
+    $customers = Customer::find()->all();
+    return $this->render('existing-customers', ['customers' => $customers]);
+}
     /**
      * Updates an existing Order model.
      * If update is successful, the browser will be redirected to the 'view' page.

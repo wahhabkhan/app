@@ -17,30 +17,43 @@ $employeeNames = ArrayHelper::map(ProductionEmployees::find()->all(), 'employees
 });
 ?>
 
-<div style="margin-left:180px" class="production-batch-form">
+<div style="margin-left:380px" class="production-batch-form w-50 mt-3">
 
     <?php $form = ActiveForm::begin(); ?>
-
+    <div class="row ">
+        <div class="col-md-4">
     <?= $form->field($model, 'date') ?>
-
+</div>
+</div>
+<div class="row ">
+        <div class="col-md-4">
     <?= $form->field($model, 'production_name')->textInput(['maxlength' => true]) ?>
-
+    </div>
+    <div class="col-md-4">
     <?= $form->field($model, 'total_units')->textInput(['maxlength' => true]) ?>
-
+    </div>
+    <div class="col-md-4">
     <?= $form->field($model, 'expiration_date')->widget(DatePicker::classname(), [
     'options' => ['class' => 'form-control'],
     'dateFormat' => 'yyyy-MM-dd', 
 ]) ?>
+</div>
+</div>
 
+<div class="row ">
+        <div class="col-md-4">
     <?= $form->field($model, 'batch_number')->textInput(['maxlength' => true]) ?>
-
+    </div>
+    <div class="col-md-4">
     <?= $form->field($model, 'employee_name')->dropDownList(
         $employeeNames, // The list of employee names
         ['prompt' => 'Select Employee'] // Optional, to add a prompt
     ) ?>
+    </div>
+</div>
 
     <div class="form-group">
-        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton('Save', ['class' => 'btn btn-danger']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

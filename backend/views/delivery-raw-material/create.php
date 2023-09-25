@@ -11,7 +11,7 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="delivery-raw-material-create">
 
-    <h1 style="margin-left:180px"><?= Html::encode($this->title) ?></h1>
+    <h3 class="text-danger mt-4 mb-5" style="margin-left:380px"><?= Html::encode($this->title) ?></h3>
 
     <?= $this->render('_form', [
         'model' => $model,

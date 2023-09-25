@@ -12,7 +12,7 @@ $products = Product::find()->all();
 $productList = ArrayHelper::map($products, 'product_id', 'product_name');
 ?>
 
-<div style="margin-left:180px" class="stock-goods-form">
+<div style="margin-left:380px" class="stock-goods-form mt-4 w-25">
 
     <?php $form = ActiveForm::begin(); ?>
 
@@ -24,7 +24,7 @@ $productList = ArrayHelper::map($products, 'product_id', 'product_name');
     <?= $form->field($model, 'count')->textInput() ?>
 
     <div class="form-group">
-        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton('Save', ['class' => 'btn btn-danger']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>
