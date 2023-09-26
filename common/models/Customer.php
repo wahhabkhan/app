@@ -90,6 +90,11 @@ class Customer extends \yii\db\ActiveRecord
     {
         return $this->hasMany(CustomerContact::class, ['customer_id' => 'customer_id']);
     }
+    public function getOrders()
+{
+    return $this->hasMany(Order::class, ['customer_id' => 'customer_id']);
+}
+
 
     
 }

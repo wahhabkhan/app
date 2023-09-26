@@ -68,64 +68,35 @@ class OrderItemsController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return string|\yii\web\Response
      */
-    public function actionCreate($customer_id = null)
-{
-    // Check if a customer_id is provided, if not, set it to null
-    if ($customer_id === null) {
-        $customer = null;
-    } else {
-        $customer = Customer::findOne($customer_id);
-
-        if (!$customer) {
-            throw new NotFoundHttpException('Customer not found.');
+    public function actionCreate($order_id)
+    {
+        $order = Order::findOne($order_id);
+    
+        if (!$order) {
+            throw new NotFoundHttpException('Order not found.');
         }
-    }
-
-    // Create an Order record
-    $order = new Order();
-    $order->customer_id = $customer_id; // Set customer_id (can be null for random customers)
-    $order->invoice_number = $this->generateInvoiceNumber(); // Generate a random invoice number
-    $order->date = date('Y-m-d H:i:s'); // Set the current date and time
-
-    // If a customer is provided, set the order attributes from the customer
-    if ($customer) {
-        $order->company_name = $customer->company_name;
-        $order->street_name = $customer->i_street_name;
-        $order->house_number = $customer->i_house_number;
-        $order->appendix = $customer->i_appendix;
-        $order->zipcode = $customer->i_zipcode;
-        $order->city = $customer->i_city;
-        $order->country = $customer->i_country;
-        $order->vat_number = $customer->vat_number;
-    }
-
-    // Save the order record first
-    if ($order->save()) {
-        $orderItem = new OrderItems();
-        $orderItem->customer_id = $customer_id; // Set customer_id (can be null for random customers)
-        $orderItem->order_id = $order->order_id; // Associate the order item with the newly created order
-
+    
+        $model = new OrderItems();
+        $model->order_id = $order_id;
+    
         if ($this->request->isPost) {
-            if ($orderItem->load($this->request->post()) && $orderItem->save()) {
+            if ($model->load($this->request->post()) && $model->save()) {
                 // Redirect to the order items index page after successful order item creation
-                return $this->redirect(['index']);
+                return $this->redirect(['index', 'order_id' => $order_id]);
             }
         } else {
-            $orderItem->loadDefaultValues();
+            $model->loadDefaultValues();
         }
-
+    
         return $this->render('create', [
-            'model' => $orderItem,
-            'customer' => $customer,
+            'model' => $model,
+            'order' => $order,
+            'order_id' => $order_id,
         ]);
-    } else {
-        Yii::error('Failed to save order: ' . var_export($order->errors, true));
-        throw new \yii\web\HttpException(500, 'Internal Server Error');
     }
-}
-
     
     
+ 
     
     private function generateInvoiceNumber()
     {

@@ -15,6 +15,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?= $this->render('_form', [
         'model' => $model,
+        'order_id' => $order_id, // Pass the $order_id variable to the view
     ]) ?>
 
 </div>

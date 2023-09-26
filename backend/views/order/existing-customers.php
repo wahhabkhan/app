@@ -40,8 +40,11 @@ $this->params['breadcrumbs'][] = $this->title;
                 'template' => '{create-order}',
                 'buttons' => [
                     'create-order' => function ($url, $model, $key) {
-                        return Html::a('Create Order', ['order-items/create', 'customer_id' => $model->customer_id], ['class' => 'btn btn-danger']);
+                        $order = $model->orders ? $model->orders[0]->order_id : null;
+                        return Html::a('Create Order', ['order/create', 'customer_id' => $model->customer_id], ['class' => 'btn btn-danger']);
+
                     },
+                    
                 ],
             ],
         ],

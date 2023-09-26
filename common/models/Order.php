@@ -76,4 +76,9 @@ class Order extends \yii\db\ActiveRecord
     {
         return $this->hasMany(OrderItems::class, ['order_id' => 'order_id']);
     }
+    public function getCustomer()
+    {
+        // Assuming you have a foreign key named `customer_id` in the Order table
+        return $this->hasOne(Customer::className(), ['customer_id' => 'customer_id']);
+    }
 }

@@ -9,8 +9,12 @@ use yii\helpers\ArrayHelper;
 /** @var common\models\OrderItems $model */
 /** @var yii\widgets\ActiveForm $form */
 $order = ArrayHelper::map(Order::find()->all(), 'order_id', function($model) {
-    return $model->date . ' ' . $model->invoice_number . ' ' . $model->company_name;
+    return $model->order_id . '  ,  ' . $model->date . '  ,   ' . $model->invoice_number;
 });
+// <?= $form->field($model, 'order_id')->dropDownList(
+//     \yii\helpers\ArrayHelper::map(\common\models\Order::find()->all(), 'order_id', 'order_id'),
+//     ['prompt' => 'Select Order']
+// ) 
 ?>
 
 <div style="margin-left:180px" class="order-items-form w-50">
@@ -38,15 +42,18 @@ $order = ArrayHelper::map(Order::find()->all(), 'order_id', function($model) {
     <div class="col-md-6">
 
     <?= $form->field($model, 'quantity')->textInput() ?>
+    
     </div>
     <div class="col-md-6">
     <?= $form->field($model, 'unit_price')->textInput(['maxlength' => true]) ?>
     </div>
+
     </div>
 
 
+
     <div class="form-group">
-        <?= Html::submitButton('Save', ['class' => 'btn btn-danger']) ?>
+        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

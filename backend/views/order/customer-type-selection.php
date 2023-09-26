@@ -10,12 +10,13 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 
 <div style="margin-left:450px" class="order-form mt-5">
-    <h2 class="ms-4"><?= Html::encode($this->title) ?></h2>
+    <h3  class="ms-4 text-secondary"><?= Html::encode($this->title) ?></h3 >
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= Html::a('Random Customer', ['order/create'], ['class' => 'btn btn-danger']) ?>
-        <?= Html::a('Existing Customer', ['order/existing-customers'], ['class' => ' ms-3 btn btn-danger']) ?>
+    <?= Html::a('Existing Customers', ['order/existing-customers'], ['class' => 'btn btn-danger ms-5 mt-2'
+    , 'style' => 'margin-left:900px']) ?> <br>
+        <?= Html::a('Random Customer', ['order/create-random'], ['class' => 'btn btn-danger ms-5 mt-2']) ?>
 
     <?php ActiveForm::end(); ?>
 </div>

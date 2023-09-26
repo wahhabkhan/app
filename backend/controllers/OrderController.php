@@ -8,6 +8,7 @@ use common\models\OrderSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use Yii;
 
 /**
  * OrderController implements the CRUD actions for Order model.
@@ -66,24 +67,71 @@ class OrderController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return string|\yii\web\Response
      */
-    public function actionCreate()
+    public function actionCreateRandom()
     {
-        $model = new Order();
-        $model->invoice_number = $this->generateInvoiceNumber();
+        // Create a new order
+        $order = new Order();
     
-        if ($this->request->isPost) {
-            if ($model->load($this->request->post()) && $model->save()) {
-                // Redirect to the order items create action with the order_id
-                return $this->redirect(['/order-items/create', 'order_id' => $model->order_id]);
-            }
-        } else {
-            $model->loadDefaultValues();
+        // Handle the case of a random customer
+        $order->customer_id = null;
+        // Set other order attributes as needed
+        $order->invoice_number = $this->generateInvoiceNumber();
+        $order->date = date('Y-m-d H:i:s');
+    
+        // If it's a POST request, validate and save the order
+        if ($order->load(Yii::$app->request->post()) && $order->save()) {
+            // Redirect to the order items create action with the new order_id
+            return $this->redirect(['/order-items/create', 'order_id' => $order->order_id]);
         }
     
+        // Render the order creation form for random customers
         return $this->render('create', [
-            'model' => $model,
+            'model' => $order,
         ]);
     }
+    
+    public function actionCreate($customer_id = null)
+    {
+        if ($customer_id !== null) {
+            // Try to find an existing customer
+            $customer = Customer::findOne($customer_id);
+    
+            if ($customer) {
+                // Populate order attributes from the customer
+                $order = new Order();
+
+                $order->invoice_number = $this->generateInvoiceNumber();
+                $order->date = date('Y-m-d H:i:s');
+
+                $order->customer_id = $customer_id;
+                $order->company_name = $customer->company_name;
+                $order->street_name = $customer->i_street_name;
+                $order->house_number = $customer->i_house_number;
+                $order->appendix = $customer->i_appendix;
+                $order->zipcode = $customer->i_zipcode;
+                $order->city = $customer->i_city;
+                $order->country = $customer->i_country;
+                $order->vat_number = $customer->vat_number;
+    
+                // Save the order and redirect to order items create action
+                if ($order->save()) {
+                    return $this->redirect(['/order-items/create', 'order_id' => $order->order_id]);
+                }
+            } else {
+                // Handle the case where the provided customer ID does not exist
+                throw new NotFoundHttpException('Customer not found.');
+            }
+        }
+    
+        // Render the existing customer view for creating orders
+        $customers = Customer::find()->all();
+        return $this->render('existing-customers', ['customers' => $customers]);
+    }
+    
+    
+    
+    
+    
     
     private function generateInvoiceNumber()
     {
