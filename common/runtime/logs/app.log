@@ -27920,3 +27920,98 @@ $_SERVER = [
     'REQUEST_TIME_FLOAT' => 1695687803.2448
     'REQUEST_TIME' => 1695687803
 ]
+2023-09-26 02:45:33 [::1][-][3ua8vlqf4drilur47vgsq73o0v][error][yii\base\ErrorException:2] yii\base\ErrorException: Undefined variable $order_id in D:\xammp1\htdocs\app-ms\backend\views\order-items\index.php:16
+Stack trace:
+#0 D:\xammp1\htdocs\app-ms\backend\views\order-items\index.php(16): yii\base\ErrorHandler->handleError(2, 'Undefined varia...', 'D:\\xammp1\\htdoc...', 16)
+#1 D:\xammp1\htdocs\app-ms\vendor\yiisoft\yii2\base\View.php(347): require('D:\\xammp1\\htdoc...')
+#2 D:\xammp1\htdocs\app-ms\vendor\yiisoft\yii2\base\View.php(257): yii\base\View->renderPhpFile('D:\\xammp1\\htdoc...', Array)
+#3 D:\xammp1\htdocs\app-ms\vendor\yiisoft\yii2\base\View.php(156): yii\base\View->renderFile('D:\\xammp1\\htdoc...', Array, Object(backend\controllers\OrderItemsController))
+#4 D:\xammp1\htdocs\app-ms\vendor\yiisoft\yii2\base\Controller.php(407): yii\base\View->render('index', Array, Object(backend\controllers\OrderItemsController))
+#5 D:\xammp1\htdocs\app-ms\backend\controllers\OrderItemsController.php(48): yii\base\Controller->render('index', Array)
+#6 [internal function]: backend\controllers\OrderItemsController->actionIndex('298')
+#7 D:\xammp1\htdocs\app-ms\vendor\yiisoft\yii2\base\InlineAction.php(57): call_user_func_array(Array, Array)
+#8 D:\xammp1\htdocs\app-ms\vendor\yiisoft\yii2\base\Controller.php(178): yii\base\InlineAction->runWithParams(Array)
+#9 D:\xammp1\htdocs\app-ms\vendor\yiisoft\yii2\base\Module.php(552): yii\base\Controller->runAction('index', Array)
+#10 D:\xammp1\htdocs\app-ms\vendor\yiisoft\yii2\web\Application.php(103): yii\base\Module->runAction('order-items/ind...', Array)
+#11 D:\xammp1\htdocs\app-ms\vendor\yiisoft\yii2\base\Application.php(384): yii\web\Application->handleRequest(Object(yii\web\Request))
+#12 D:\xammp1\htdocs\app-ms\backend\web\index.php(18): yii\base\Application->run()
+#13 {main}
+2023-09-26 02:45:33 [::1][-][3ua8vlqf4drilur47vgsq73o0v][info][application] $_GET = [
+    'order_id' => '298'
+]
+
+$_POST = []
+
+$_FILES = []
+
+$_COOKIE = [
+    'advanced-backend' => '3ua8vlqf4drilur47vgsq73o0v'
+    '_csrf-backend' => '081010a5a963c336b1a80d02c807a1810d4cf51fb61d928450db50959d074c9ca:2:{i:0;s:13:\"_csrf-backend\";i:1;s:32:\"Ea5PiEJ9h26bAXHhqIRjK_QjT2a_u3Ay\";}'
+]
+
+$_SESSION = [
+    '__flash' => []
+]
+
+$_SERVER = [
+    'REDIRECT_MIBDIRS' => 'D:/xammp1/php/extras/mibs'
+    'REDIRECT_MYSQL_HOME' => '\\xampp\\mysql\\bin'
+    'REDIRECT_OPENSSL_CONF' => 'D:/xammp1/apache/bin/openssl.cnf'
+    'REDIRECT_PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php'
+    'REDIRECT_PHPRC' => '\\xampp\\php'
+    'REDIRECT_TMP' => '\\xampp\\tmp'
+    'REDIRECT_STATUS' => '200'
+    'MIBDIRS' => 'D:/xammp1/php/extras/mibs'
+    'MYSQL_HOME' => '\\xampp\\mysql\\bin'
+    'OPENSSL_CONF' => 'D:/xammp1/apache/bin/openssl.cnf'
+    'PHP_PEAR_SYSCONF_DIR' => '\\xampp\\php'
+    'PHPRC' => '\\xampp\\php'
+    'TMP' => '\\xampp\\tmp'
+    'HTTP_HOST' => 'localhost'
+    'HTTP_CONNECTION' => 'keep-alive'
+    'HTTP_CACHE_CONTROL' => 'max-age=0'
+    'HTTP_SEC_CH_UA' => '\"Chromium\";v=\"116\", \"Not)A;Brand\";v=\"24\", \"Google Chrome\";v=\"116\"'
+    'HTTP_SEC_CH_UA_MOBILE' => '?0'
+    'HTTP_SEC_CH_UA_PLATFORM' => '\"Windows\"'
+    'HTTP_UPGRADE_INSECURE_REQUESTS' => '1'
+    'HTTP_USER_AGENT' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36'
+    'HTTP_ACCEPT' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7'
+    'HTTP_SEC_FETCH_SITE' => 'same-origin'
+    'HTTP_SEC_FETCH_MODE' => 'navigate'
+    'HTTP_SEC_FETCH_USER' => '?1'
+    'HTTP_SEC_FETCH_DEST' => 'document'
+    'HTTP_REFERER' => 'http://localhost/app-ms/backend/web/order-items/create?order_id=298'
+    'HTTP_ACCEPT_ENCODING' => 'gzip, deflate, br'
+    'HTTP_ACCEPT_LANGUAGE' => 'en-US,en;q=0.9,ur-PK;q=0.8,ur;q=0.7'
+    'HTTP_COOKIE' => 'advanced-backend=3ua8vlqf4drilur47vgsq73o0v; _csrf-backend=081010a5a963c336b1a80d02c807a1810d4cf51fb61d928450db50959d074c9ca%3A2%3A%7Bi%3A0%3Bs%3A13%3A%22_csrf-backend%22%3Bi%3A1%3Bs%3A32%3A%22Ea5PiEJ9h26bAXHhqIRjK_QjT2a_u3Ay%22%3B%7D'
+    'PATH' => 'C:\\Program Files (x86)\\bin;C:\\Program Files\\Common Files\\Oracle\\Java\\javapath;C:\\Program Files (x86)\\Common Files\\Oracle\\Java\\javapath;C:\\Program Files\\Java\\jdk-18.0.1.1\\bin;C:\\Program Files (x86)\\Intel\\Intel(R) Management Engine Components\\iCLS\\;C:\\Program Files\\Intel\\Intel(R) Management Engine Components\\iCLS\\;C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\Program Files (x86)\\Intel\\Intel(R) Management Engine Components\\DAL;C:\\Program Files\\Intel\\Intel(R) Management Engine Components\\DAL;C:\\Program Files (x86)\\Intel\\Intel(R) Management Engine Components\\IPT;C:\\Program Files\\Intel\\Intel(R) Management Engine Components\\IPT;C:\\Program Files\\Intel\\WiFi\\bin\\;C:\\Program Files\\Common Files\\Intel\\WirelessCommon\\;C:\\Program Files\\nodejs;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\Git\\cmd;C:\\ProgramData\\chocolatey\\bin;C:\\Program Files\\nodejs\\;C:\\xampp\\php;C:\\ProgramData\\ComposerSetup\\bin;C:\\Users\\Haier\\AppData\\Local\\Packages\\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\\LocalCache\\local-packages\\Python311\\Scripts;C:\\Users\\Haier\\AppData\\Local\\Microsoft\\WindowsApps;C:\\Users\\Haier\\AppData\\Local\\Programs\\Microsoft VS Code\\bin;C:\\Program Files\\Java\\jdk-18.0.1.1\\bin;C:\\Users\\Haier\\AppData\\Roaming\\npm;C:\\Users\\Haier\\AppData\\Roaming\\Composer\\vendor\\bin;C:\\MinGW\\bin;C:\\mingw64\\bin;C:\\Users\\Haier\\AppData\\Local\\Packages\\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\\LocalCache\\local-packages\\Python311\\Scripts;'
+    'SystemRoot' => 'C:\\WINDOWS'
+    'COMSPEC' => 'C:\\WINDOWS\\system32\\cmd.exe'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'WINDIR' => 'C:\\WINDOWS'
+    'SERVER_SIGNATURE' => '<address>Apache/2.4.53 (Win64) OpenSSL/1.1.1n PHP/8.1.6 Server at localhost Port 80</address>
+'
+    'SERVER_SOFTWARE' => 'Apache/2.4.53 (Win64) OpenSSL/1.1.1n PHP/8.1.6'
+    'SERVER_NAME' => 'localhost'
+    'SERVER_ADDR' => '::1'
+    'SERVER_PORT' => '80'
+    'REMOTE_ADDR' => '::1'
+    'DOCUMENT_ROOT' => 'D:/xammp1/htdocs'
+    'REQUEST_SCHEME' => 'http'
+    'CONTEXT_PREFIX' => ''
+    'CONTEXT_DOCUMENT_ROOT' => 'D:/xammp1/htdocs'
+    'SERVER_ADMIN' => 'postmaster@localhost'
+    'SCRIPT_FILENAME' => 'D:/xammp1/htdocs/app-ms/backend/web/index.php'
+    'REMOTE_PORT' => '51727'
+    'REDIRECT_URL' => '/app-ms/backend/web/order-items/index'
+    'REDIRECT_QUERY_STRING' => 'order_id=298'
+    'GATEWAY_INTERFACE' => 'CGI/1.1'
+    'SERVER_PROTOCOL' => 'HTTP/1.1'
+    'REQUEST_METHOD' => 'GET'
+    'QUERY_STRING' => 'order_id=298'
+    'REQUEST_URI' => '/app-ms/backend/web/order-items/index?order_id=298'
+    'SCRIPT_NAME' => '/app-ms/backend/web/index.php'
+    'PHP_SELF' => '/app-ms/backend/web/index.php'
+    'REQUEST_TIME_FLOAT' => 1695689133.0705
+    'REQUEST_TIME' => 1695689133
+]

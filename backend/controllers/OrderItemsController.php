@@ -46,6 +46,7 @@ class OrderItemsController extends Controller
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            'order_id' => $order_id,
         ]);
     }
     

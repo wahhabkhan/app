@@ -53,7 +53,7 @@ $order = ArrayHelper::map(Order::find()->all(), 'order_id', function($model) {
 
 
     <div class="form-group">
-        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton('Save', ['class' => 'btn btn-danger']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>
