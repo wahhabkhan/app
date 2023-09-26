@@ -135,10 +135,13 @@ class OrderController extends Controller
     
     private function generateInvoiceNumber()
     {
-        // Generate a unique invoice number based on your requirements
-        // You can use your own logic to generate the invoice number here
-        // For example, you can generate a random number or use a specific format
-        return rand(1000000000, 9999999999); // Generates a random 10-digit number
+        $existingNumbers = Order::find()->select('invoice_number')->column(); // Retrieve existing numbers
+
+        do {
+            $randomNumber = mt_rand(1000000000, 9999999999); // Generate a random number (adjust the range as needed)
+         //   $invoiceNumber = 'INV-' . $randomNumber; // Format the invoice number as needed
+        } while (in_array($randomNumber, $existingNumbers)); // Check for duplicates
+        return $randomNumber;    
     }
 
     public function actionCustomerTypeSelection()

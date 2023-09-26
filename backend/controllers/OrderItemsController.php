@@ -99,13 +99,7 @@ class OrderItemsController extends Controller
     
  
     
-    private function generateInvoiceNumber()
-    {
-        // Generate a unique invoice number based on your requirements
-        // You can use your own logic to generate the invoice number here
-        // For example, you can generate a random number or use a specific format
-        return rand(1000000000, 9999999999); // Generates a random 10-digit number
-    }
+
         
     
     
