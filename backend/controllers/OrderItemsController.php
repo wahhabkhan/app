@@ -8,6 +8,11 @@ use common\models\OrderItemsSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+//use kartik\mpdf\Pdf;
+use yii\data\ActiveDataProvider;
+use TCPDF;
+use Yii;
+
 
 /**
  * OrderItemsController implements the CRUD actions for OrderItems model.
@@ -95,12 +100,40 @@ class OrderItemsController extends Controller
             'order_id' => $order_id,
         ]);
     }
-    
-    
- 
-    
+    public function actionGeneratePdf($order_id)
+    {
+        $orderModel = Order::findOne($order_id);
+        $dataProvider = new ActiveDataProvider([
+            'query' => OrderItems::find()->where(['order_id' => $order_id]),
+        ]);
 
-        
+        // Create a new TCPDF instance
+        $pdf = new TCPDF();
+
+        // Set document information
+        $pdf->SetCreator(Yii::$app->name);
+        $pdf->SetAuthor(Yii::$app->name);
+        $pdf->SetTitle('Order PDF');
+        $pdf->SetSubject('Order PDF');
+        $pdf->SetKeywords('order, pdf');
+
+        // Add a page
+        $pdf->AddPage();
+
+        // Set font
+        $pdf->SetFont('dejavusans', '', 12);
+
+        // Output content to PDF
+        $content = $this->renderPartial('pdf-view', [
+            'orderModel' => $orderModel,
+            'dataProvider' => $dataProvider,
+        ]);
+        $pdf->writeHTML($content, true, false, true, false, '');
+
+        // Close and output PDF
+        $pdf->Output('order.pdf', 'I');
+    }
+
     
     
     /**
@@ -113,15 +146,18 @@ class OrderItemsController extends Controller
     public function actionUpdate($order_items_id)
     {
         $model = $this->findModel($order_items_id);
-
+        $order_id = $model->order_id; // Get the order_id from the model
+    
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'order_items_id' => $model->order_items_id]);
+            return $this->redirect(['index', 'order_id' => $order_id]); // Redirect to the index page with order_id
         }
-
+    
         return $this->render('update', [
             'model' => $model,
         ]);
     }
+    
+    
 
     /**
      * Deletes an existing OrderItems model.

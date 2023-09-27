@@ -54,4 +54,9 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
     ],
 ]); ?>
+<p style="margin-left: 800px">
+    <?= Html::a('Generate PDF', ['generate-pdf', 'order_id' => $order_id], ['class' => 'btn btn-danger', 'target' => '_blank']) ?>
+</p>
+
+
 </div>

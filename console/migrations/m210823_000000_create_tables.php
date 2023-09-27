@@ -13,6 +13,7 @@ class m210823_000000_create_tables extends Migration
         $sql = <<<SQL
         CREATE SCHEMA IF NOT EXISTS `app_ms` DEFAULT CHARACTER SET utf8mb4 ;
 
+
 -- -----------------------------------------------------
 -- Table `app_ms`.`auth_assignment`
 -- -----------------------------------------------------
@@ -42,7 +43,7 @@ CREATE TABLE IF NOT EXISTS `app_ms`.`auth_item` (
   `created_at` INT(11) NULL DEFAULT NULL,
   `updated_at` INT(11) NULL DEFAULT NULL,
   PRIMARY KEY (`name`),
-  INDEX `rule_name` (`rule_name` ASC) ,
+  INDEX `rule_name` (`rule_name` ASC) VISIBLE,
   CONSTRAINT `auth_item_ibfk_1`
     FOREIGN KEY (`rule_name`)
     REFERENCES `smd`.`auth_rule` (`name`)
@@ -59,7 +60,7 @@ CREATE TABLE IF NOT EXISTS `app_ms`.`auth_item_child` (
   `parent` VARCHAR(64) NOT NULL,
   `child` VARCHAR(64) NOT NULL,
   PRIMARY KEY (`parent`, `child`),
-  INDEX `child` (`child` ASC) ,
+  INDEX `child` (`child` ASC) VISIBLE,
   CONSTRAINT `auth_item_child_ibfk_1`
     FOREIGN KEY (`parent`)
     REFERENCES `smd`.`auth_item` (`name`)
@@ -112,7 +113,7 @@ CREATE TABLE IF NOT EXISTS `app_ms`.`customer` (
   `notes` VARCHAR(255) NOT NULL,
   PRIMARY KEY (`customer_id`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 4
+AUTO_INCREMENT = 8
 DEFAULT CHARACTER SET = utf8mb4;
 
 
@@ -130,7 +131,7 @@ CREATE TABLE IF NOT EXISTS `app_ms`.`customer_contact` (
   `phone_number3` VARCHAR(255) NOT NULL,
   `customer_id` INT(50) NOT NULL,
   PRIMARY KEY (`contact_id`),
-  INDEX `fk_customer_contact_customer_idx` (`customer_id` ASC) ,
+  INDEX `fk_customer_contact_customer_idx` (`customer_id` ASC) VISIBLE,
   CONSTRAINT `fk_customer_contact_customer`
     FOREIGN KEY (`customer_id`)
     REFERENCES `app`.`customer` (`customer_id`)
@@ -186,7 +187,7 @@ CREATE TABLE IF NOT EXISTS `app_ms`.`menu` (
   `order` INT(11) NULL DEFAULT NULL,
   `data` BLOB NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
-  INDEX `parent` (`parent` ASC) ,
+  INDEX `parent` (`parent` ASC) VISIBLE,
   CONSTRAINT `menu_ibfk_1`
     FOREIGN KEY (`parent`)
     REFERENCES `smd`.`menu` (`id`)
@@ -222,14 +223,38 @@ CREATE TABLE IF NOT EXISTS `app_ms`.`order` (
   `city` VARCHAR(255) NOT NULL,
   `country` VARCHAR(255) NOT NULL,
   `vat_number` VARCHAR(255) NOT NULL,
-  `discount` DOUBLE NOT NULL,
-  `products` VARCHAR(255) NOT NULL,
-  `quantity` INT(255) NOT NULL,
-  `unit_price` DOUBLE NOT NULL,
-  `sub_total` DOUBLE NOT NULL,
-  `total` DOUBLE NOT NULL,
-  PRIMARY KEY (`order_id`))
+  `discount` DECIMAL(50,2) NOT NULL,
+  `customer_id` INT(11) NULL DEFAULT NULL,
+  PRIMARY KEY (`order_id`),
+  INDEX `fk_order_customer` (`customer_id` ASC) VISIBLE,
+  CONSTRAINT `fk_order_customer`
+    FOREIGN KEY (`customer_id`)
+    REFERENCES `app_ms`.`customer` (`customer_id`))
 ENGINE = InnoDB
+AUTO_INCREMENT = 306
+DEFAULT CHARACTER SET = utf8mb4;
+
+
+-- -----------------------------------------------------
+-- Table `app_ms`.`order_items`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `app_ms`.`order_items` (
+  `order_items_id` INT(11) NOT NULL AUTO_INCREMENT,
+  `product` VARCHAR(255) NULL DEFAULT NULL,
+  `var_rate` DECIMAL(50,2) NULL DEFAULT NULL,
+  `quantity` INT(11) NULL DEFAULT NULL,
+  `unit_price` DECIMAL(50,2) NULL DEFAULT NULL,
+  `sub_total` DECIMAL(50,2) NULL DEFAULT NULL,
+  `order_id` INT(50) NOT NULL,
+  PRIMARY KEY (`order_items_id`),
+  INDEX `fk_order_items_order1_idx` (`order_id` ASC) VISIBLE,
+  CONSTRAINT `fk_order_items_order1`
+    FOREIGN KEY (`order_id`)
+    REFERENCES `app_ms`.`order` (`order_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+AUTO_INCREMENT = 75
 DEFAULT CHARACTER SET = utf8mb4;
 
 
@@ -241,8 +266,8 @@ CREATE TABLE IF NOT EXISTS `app_ms`.`product` (
   `product_name` VARCHAR(255) NOT NULL,
   `barcode` VARCHAR(255) NOT NULL,
   `volume_or_weight` VARCHAR(255) NOT NULL,
-  `retial_price` VARCHAR(255) NOT NULL,
-  `wholesale_price` VARCHAR(255) NOT NULL,
+  `retial_price` DECIMAL(50,2) NOT NULL,
+  `wholesale_price` DECIMAL(50,2) NOT NULL,
   PRIMARY KEY (`product_id`))
 ENGINE = InnoDB
 AUTO_INCREMENT = 2
@@ -309,7 +334,7 @@ CREATE TABLE IF NOT EXISTS `app_ms`.`production_employees_work` (
   `working_hours` VARCHAR(255) NOT NULL,
   `production_employees_employees_id` INT(11) NOT NULL,
   PRIMARY KEY (`work_id`),
-  INDEX `fk_production_employees_work_production_employees1_idx` (`production_employees_employees_id` ASC) ,
+  INDEX `fk_production_employees_work_production_employees1_idx` (`production_employees_employees_id` ASC) VISIBLE,
   CONSTRAINT `fk_production_employees_work_production_employees1`
     FOREIGN KEY (`production_employees_employees_id`)
     REFERENCES `app_ms`.`production_employees` (`employees_id`)
@@ -342,25 +367,6 @@ CREATE TABLE IF NOT EXISTS `app_ms`.`sales` (
   PRIMARY KEY (`sales_id`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4;
-
-
--- -----------------------------------------------------
--- Table `app_ms`.`sales_targets`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `app_ms`.`sales_targets` (
-  `target_id` INT(11) NOT NULL AUTO_INCREMENT,
-  `month_year` VARCHAR(255) NULL DEFAULT NULL,
-  `sales_target_amount` VARCHAR(255) NULL DEFAULT NULL,
-  `rep_id` INT(11) NOT NULL,
-  PRIMARY KEY (`target_id`),
-  INDEX `fk_sales_targets_sales_representatives1_idx` (`rep_id` ASC) ,
-  CONSTRAINT `fk_sales_targets_sales_representatives1`
-    FOREIGN KEY (`rep_id`)
-    REFERENCES `smd`.`sales_representatives` (`rep_id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
@@ -410,16 +416,16 @@ CREATE TABLE IF NOT EXISTS `app_ms`.`supplier_contact` (
   `phone_number1` VARCHAR(255) NOT NULL,
   `phone_number2` VARCHAR(255) NOT NULL,
   `phone_number3` VARCHAR(255) NOT NULL,
-  `supplier_id` INT(11) NOT NULL,
+  `supplier_id` INT(11) NULL DEFAULT NULL,
   PRIMARY KEY (`contact_id`),
-  INDEX `fk_supplier_contact_supplier1_idx` (`supplier_id` ASC) ,
+  INDEX `fk_supplier_contact_supplier1_idx` (`supplier_id` ASC) VISIBLE,
   CONSTRAINT `fk_supplier_contact_supplier1`
     FOREIGN KEY (`supplier_id`)
     REFERENCES `app`.`supplier` (`supplier_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
-AUTO_INCREMENT = 9
+AUTO_INCREMENT = 12
 DEFAULT CHARACTER SET = utf8mb4;
 
 
@@ -434,7 +440,7 @@ CREATE TABLE IF NOT EXISTS `app_ms`.`supplier_raw_material` (
   `low_stock` VARCHAR(255) NOT NULL,
   `supplier_id` INT(11) NOT NULL,
   PRIMARY KEY (`raw_id`),
-  INDEX `fk_supplier_raw_material_supplier1_idx` (`supplier_id` ASC) ,
+  INDEX `fk_supplier_raw_material_supplier1_idx` (`supplier_id` ASC) VISIBLE,
   CONSTRAINT `fk_supplier_raw_material_supplier1`
     FOREIGN KEY (`supplier_id`)
     REFERENCES `app_ms`.`supplier` (`supplier_id`)
@@ -459,6 +465,7 @@ CREATE TABLE IF NOT EXISTS `app_ms`.`users` (
 ENGINE = InnoDB
 AUTO_INCREMENT = 10
 DEFAULT CHARACTER SET = utf8mb4;
+
         
         SQL;
 

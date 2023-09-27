@@ -27,6 +27,9 @@ class Order extends \yii\db\ActiveRecord
     /**
      * {@inheritdoc}
      */
+    public $id;
+
+
     public static function tableName()
     {
         return 'order';
