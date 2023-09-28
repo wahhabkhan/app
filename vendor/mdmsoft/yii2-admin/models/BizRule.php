@@ -4,7 +4,7 @@ namespace mdm\admin\models;
 
 use Yii;
 use yii\rbac\Rule;
-use mdm\admin\components\Configs;
+use yii\base\Model;
 
 /**
  * BizRule
@@ -12,7 +12,7 @@ use mdm\admin\components\Configs;
  * @author Misbahul D Munir <misbahuldmunir@gmail.com>
  * @since 1.0
  */
-class BizRule extends \yii\base\Model
+class BizRule extends Model
 {
     /**
      * @var string name of the rule
@@ -40,7 +40,7 @@ class BizRule extends \yii\base\Model
     private $_item;
 
     /**
-     * Initialize object
+     * Initilaize object
      * @param \yii\rbac\Rule $item
      * @param array $config
      */
@@ -60,9 +60,14 @@ class BizRule extends \yii\base\Model
     public function rules()
     {
         return [
-            [['name', 'className'], 'required'],
+            [['className'], 'required'],
             [['className'], 'string'],
-            [['className'], 'classExists']
+            [['className'], 'classExists'],
+            [['name'], 'default', 'value' => function() {
+                $class = $this->className;
+                return (new $class())->name;
+            }],
+            [['name'], 'required'],
         ];
     }
 
@@ -71,15 +76,8 @@ class BizRule extends \yii\base\Model
      */
     public function classExists()
     {
-        if (!class_exists($this->className)) {
-            $message = Yii::t('rbac-admin', "Unknown class '{class}'", ['class' => $this->className]);
-            $this->addError('className', $message);
-            return;
-        }
-        if (!is_subclass_of($this->className, Rule::className())) {
-            $message = Yii::t('rbac-admin', "'{class}' must extend from 'yii\rbac\Rule' or its child class", [
-                    'class' => $this->className]);
-            $this->addError('className', $message);
+        if (!class_exists($this->className) || !is_subclass_of($this->className, Rule::className())) {
+            $this->addError('className', "Unknown Class: {$this->className}");
         }
     }
 
@@ -110,7 +108,7 @@ class BizRule extends \yii\base\Model
      */
     public static function find($id)
     {
-        $item = Configs::authManager()->getRule($id);
+        $item = Yii::$app->authManager->getRule($id);
         if ($item !== null) {
             return new static($item);
         }
@@ -125,7 +123,7 @@ class BizRule extends \yii\base\Model
     public function save()
     {
         if ($this->validate()) {
-            $manager = Configs::authManager();
+            $manager = Yii::$app->authManager;
             $class = $this->className;
             if ($this->_item === null) {
                 $this->_item = new $class();
@@ -155,5 +153,27 @@ class BizRule extends \yii\base\Model
     public function getItem()
     {
         return $this->_item;
+    }
+    private $_content;
+
+    public function getContent()
+    {
+        if ($this->_content === null) {
+            if ($this->_item !== null) {
+                $reff = new \ReflectionClass($this->_item);
+                $this->_content = highlight_file($reff->getFileName(), true);
+            } else {
+                $this->_content = '';
+            }
+        }
+        return $this->_content;
+    }
+
+    public function extraFields()
+    {
+        return[
+            'item',
+            'content'
+        ];
     }
 }

@@ -1,6 +1,7 @@
 <?php
 
-use mdm\admin\components\Configs;
+use yii\db\Schema;
+use mdm\admin\classes\Configs;
 
 /**
  * Migration table of table_menu
@@ -14,30 +15,30 @@ class m140602_111327_create_menu_table extends \yii\db\Migration
     /**
      * @inheritdoc
      */
-    public function up()
+    public function safeUp()
     {
-        $menuTable = Configs::instance()->menuTable;
+        $menuTable = Configs::menuTable();
         $tableOptions = null;
         if ($this->db->driverName === 'mysql') {
             $tableOptions = 'CHARACTER SET utf8 COLLATE utf8_general_ci ENGINE=InnoDB';
         }
 
         $this->createTable($menuTable, [
-            'id' => $this->primaryKey(),
-            'name' => $this->string(128)->notNull(),
-            'parent' => $this->integer(),
-            'route' => $this->string(),
-            'order' => $this->integer(),
-            'data' => $this->binary(),
-            "FOREIGN KEY ([[parent]]) REFERENCES {$menuTable}([[id]]) ON DELETE SET NULL ON UPDATE CASCADE",
+            'id' => Schema::TYPE_PK,
+            'name' => Schema::TYPE_STRING . '(128) NOT NULL',
+            'parent' => Schema::TYPE_INTEGER. ' NULL',
+            'route' => Schema::TYPE_STRING . '(256)',
+            'order' => Schema::TYPE_INTEGER,
+            'data' => Schema::TYPE_TEXT,
+            "FOREIGN KEY (parent) REFERENCES {$menuTable}(id) ON DELETE SET NULL ON UPDATE CASCADE",
         ], $tableOptions);
     }
 
     /**
      * @inheritdoc
      */
-    public function down()
+    public function safeDown()
     {
-        $this->dropTable(Configs::instance()->menuTable);
+        $this->dropTable(Configs::menuTable());
     }
 }

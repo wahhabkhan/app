@@ -39,16 +39,6 @@ return array (
       '@kartik/base' => $vendorDir . '/kartik-v/yii2-krajee-base/src',
     ),
   ),
-  'yiisoft/yii2-bootstrap5' => 
-  array (
-    'name' => 'yiisoft/yii2-bootstrap5',
-    'version' => '2.0.4.0',
-    'alias' => 
-    array (
-      '@yii/bootstrap5' => $vendorDir . '/yiisoft/yii2-bootstrap5/src',
-    ),
-    'bootstrap' => 'yii\\bootstrap5\\i18n\\TranslationBootstrap',
-  ),
   'yiisoft/yii2-symfonymailer' => 
   array (
     'name' => 'yiisoft/yii2-symfonymailer',
@@ -56,15 +46,6 @@ return array (
     'alias' => 
     array (
       '@yii/symfonymailer' => $vendorDir . '/yiisoft/yii2-symfonymailer/src',
-    ),
-  ),
-  'mdmsoft/yii2-admin' => 
-  array (
-    'name' => 'mdmsoft/yii2-admin',
-    'version' => '2.12.0.0',
-    'alias' => 
-    array (
-      '@mdm/admin' => $vendorDir . '/mdmsoft/yii2-admin',
     ),
   ),
   'yiisoft/yii2-jui' => 
@@ -83,6 +64,52 @@ return array (
     'alias' => 
     array (
       '@yii/debug' => $vendorDir . '/yiisoft/yii2-debug/src',
+    ),
+  ),
+  'deesoft/yii2-angular' => 
+  array (
+    'name' => 'deesoft/yii2-angular',
+    'version' => '1.3.0.0',
+    'alias' => 
+    array (
+      '@dee/angular' => $vendorDir . '/deesoft/yii2-angular',
+    ),
+    'bootstrap' => 'dee\\angular\\Bootstrap',
+  ),
+  'yiisoft/yii2-bootstrap' => 
+  array (
+    'name' => 'yiisoft/yii2-bootstrap',
+    'version' => '2.0.11.0',
+    'alias' => 
+    array (
+      '@yii/bootstrap' => $vendorDir . '/yiisoft/yii2-bootstrap/src',
+    ),
+  ),
+  'rmrevin/yii2-fontawesome' => 
+  array (
+    'name' => 'rmrevin/yii2-fontawesome',
+    'version' => '2.17.1.0',
+    'alias' => 
+    array (
+      '@rmrevin/yii/fontawesome' => $vendorDir . '/rmrevin/yii2-fontawesome',
+    ),
+  ),
+  'deesoft/yii2-adminlte' => 
+  array (
+    'name' => 'deesoft/yii2-adminlte',
+    'version' => '1.0.0.0',
+    'alias' => 
+    array (
+      '@dee/adminlte' => $vendorDir . '/deesoft/yii2-adminlte',
+    ),
+  ),
+  'mdmsoft/yii2-admin' => 
+  array (
+    'name' => 'mdmsoft/yii2-admin',
+    'version' => '3.2.0.0',
+    'alias' => 
+    array (
+      '@mdm/admin' => $vendorDir . '/mdmsoft/yii2-admin',
     ),
   ),
 );

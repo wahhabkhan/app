@@ -25,6 +25,8 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'low_stock') ?>
 
+    <?= $form->field($model, 'current_stock') ?>
+
     <?php // echo $form->field($model, 'supplier_id') ?>
 
     <div class="form-group">

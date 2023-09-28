@@ -24,8 +24,12 @@ class ComposerStaticInita371f41a7ceb503ee6495f159daba99f
             'yii\\faker\\' => 10,
             'yii\\debug\\' => 10,
             'yii\\composer\\' => 13,
-            'yii\\bootstrap5\\' => 15,
+            'yii\\bootstrap\\' => 14,
             'yii\\' => 4,
+        ),
+        'r' => 
+        array (
+            'rmrevin\\yii\\fontawesome\\' => 24,
         ),
         'm' => 
         array (
@@ -39,6 +43,11 @@ class ComposerStaticInita371f41a7ceb503ee6495f159daba99f
         'f' => 
         array (
             'frontend\\tests\\' => 15,
+        ),
+        'd' => 
+        array (
+            'dee\\angular\\' => 12,
+            'dee\\adminlte\\' => 13,
         ),
         'c' => 
         array (
@@ -106,13 +115,17 @@ class ComposerStaticInita371f41a7ceb503ee6495f159daba99f
         array (
             0 => __DIR__ . '/..' . '/yiisoft/yii2-composer',
         ),
-        'yii\\bootstrap5\\' => 
+        'yii\\bootstrap\\' => 
         array (
-            0 => __DIR__ . '/..' . '/yiisoft/yii2-bootstrap5/src',
+            0 => __DIR__ . '/..' . '/yiisoft/yii2-bootstrap/src',
         ),
         'yii\\' => 
         array (
             0 => __DIR__ . '/..' . '/yiisoft/yii2',
+        ),
+        'rmrevin\\yii\\fontawesome\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/rmrevin/yii2-fontawesome',
         ),
         'mdm\\admin\\' => 
         array (
@@ -130,6 +143,14 @@ class ComposerStaticInita371f41a7ceb503ee6495f159daba99f
         array (
             0 => __DIR__ . '/../..' . '/frontend/tests',
             1 => __DIR__ . '/../..' . '/frontend/tests/_support',
+        ),
+        'dee\\angular\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/deesoft/yii2-angular',
+        ),
+        'dee\\adminlte\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/deesoft/yii2-adminlte',
         ),
         'common\\tests\\' => 
         array (

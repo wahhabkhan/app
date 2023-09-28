@@ -20,7 +20,7 @@ return [
     'Assignments' => 'Assignements',
     'Users' => 'Utilisateurs',
     'User' => 'Utilisateur',
-    'Available' => 'Disponible',
+    'Avaliable' => 'Disponible',
     'Assigned' => 'Assigner',
     'Create' => 'Créer',
     'Update' => 'Modifier',

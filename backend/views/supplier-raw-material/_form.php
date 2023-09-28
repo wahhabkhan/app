@@ -34,6 +34,9 @@ $supplierNames = ArrayHelper::map(Supplier::find()->all(), 'supplier_id', 'compa
  </div>
  <div class="row">
  <div class="col-md-4">
+    <?= $form->field($model, 'current_stock')->textInput(['maxlength' => true]) ?>
+    </div>
+ <div class="col-md-4">
     <?= $form->field($model, 'supplier_id')->dropDownList(
         $supplierNames, // The list of supplier names
         ['prompt' => 'Select Supplier'] // Optional, to add a prompt

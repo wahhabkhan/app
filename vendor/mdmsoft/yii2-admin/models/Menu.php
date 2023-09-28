@@ -3,8 +3,8 @@
 namespace mdm\admin\models;
 
 use Yii;
-use mdm\admin\components\Configs;
-use yii\db\Query;
+use mdm\admin\classes\Configs;
+use yii\db\ActiveRecord;
 
 /**
  * This is the model class for table "menu".
@@ -22,16 +22,15 @@ use yii\db\Query;
  * @author Misbahul D Munir <misbahuldmunir@gmail.com>
  * @since 1.0
  */
-class Menu extends \yii\db\ActiveRecord
+class Menu extends ActiveRecord
 {
-    public $parent_name;
 
     /**
      * @inheritdoc
      */
     public static function tableName()
     {
-        return Configs::instance()->menuTable;
+        return Configs::menuTable();
     }
 
     /**
@@ -39,8 +38,8 @@ class Menu extends \yii\db\ActiveRecord
      */
     public static function getDb()
     {
-        if (Configs::instance()->db !== null) {
-            return Configs::instance()->db;
+        if (Configs::db() !== null) {
+            return Configs::db();
         } else {
             return parent::getDb();
         }
@@ -53,17 +52,11 @@ class Menu extends \yii\db\ActiveRecord
     {
         return [
             [['name'], 'required'],
-            [['parent_name'], 'in',
-                'range' => static::find()->select(['name'])->column(),
-                'message' => 'Menu "{value}" not found.'],
             [['parent', 'route', 'data', 'order'], 'default'],
-            [['parent'], 'filterParent', 'when' => function() {
-                return !$this->isNewRecord;
-            }],
+            [['parent'], 'exist', 'targetAttribute' => 'id'],
+            [['parent'], 'filterParent','when'=>function(){return !$this->isNewRecord;}],
             [['order'], 'integer'],
-            [['route'], 'in',
-                'range' => static::getSavedRoutes(),
-                'message' => 'Route "{value}" not found.']
+            [['route'], 'in', 'range' => static::getSavedRoutes(),]
         ];
     }
 
@@ -72,20 +65,31 @@ class Menu extends \yii\db\ActiveRecord
      */
     public function filterParent()
     {
-        $parent = $this->parent;
-        $db = static::getDb();
-        $query = (new Query)->select(['parent'])
-            ->from(static::tableName())
-            ->where('[[id]]=:id');
+        $value = $this->parent;
+        $parent = self::findOne($value);
+        $id = $this->id;
         while ($parent) {
-            if ($this->id == $parent) {
-                $this->addError('parent_name', 'Loop detected.');
+            if ($parent->id == $id) {
+                $this->addError('parent', 'A loop has been detected.');
+
                 return;
             }
-            $parent = $query->params([':id' => $parent])->scalar($db);
+            $parent = $parent->menuParent;
         }
     }
 
+    private $_parentName;
+    public function getParentName()
+    {
+        if($this->_parentName === null){
+            if($this->menuParent){
+                $this->_parentName = $this->menuParent->name;
+            }else{
+                $this->_parentName = '';
+            }
+        }
+        return $this->_parentName;
+    }
     /**
      * @inheritdoc
      */
@@ -119,7 +123,6 @@ class Menu extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Menu::className(), ['parent' => 'id']);
     }
-    private static $_routes;
 
     /**
      * Get saved routes.
@@ -127,24 +130,21 @@ class Menu extends \yii\db\ActiveRecord
      */
     public static function getSavedRoutes()
     {
-        if (self::$_routes === null) {
-            self::$_routes = [];
-            foreach (Configs::authManager()->getPermissions() as $name => $value) {
-                if ($name[0] === '/' && substr($name, -1) != '*') {
-                    self::$_routes[] = $name;
-                }
+        $result = [];
+        foreach (Yii::$app->getAuthManager()->getPermissions() as $name => $value) {
+            if ($name[0] === '/' && substr($name, -1) != '*') {
+                $result[] = $name;
             }
         }
-        return self::$_routes;
+
+        return $result;
     }
 
-    public static function getMenuSource()
+    public function extraFields()
     {
-        $tableName = static::tableName();
-        return (new \yii\db\Query())
-                ->select(['m.id', 'm.name', 'm.route', 'parent_name' => 'p.name'])
-                ->from(['m' => $tableName])
-                ->leftJoin(['p' => $tableName], '[[m.parent]]=[[p.id]]')
-                ->all(static::getDb());
+        return[
+            'menuParent',
+            'parentName',
+        ];
     }
 }

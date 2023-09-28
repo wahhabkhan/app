@@ -34,6 +34,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'supplier_code',
             'unit',
             'low_stock',
+            'current_stock',
             [
                 'label' => 'Supplier',
                 'value' => $model->supplierName,
