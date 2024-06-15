@@ -1,0 +1,56 @@
+<?php
+$params = array_merge(
+    require __DIR__ . '/../../common/config/params.php',
+    require __DIR__ . '/../../common/config/params-local.php',
+    require __DIR__ . '/params.php',
+    require __DIR__ . '/params-local.php'
+);
+
+return [
+    'id' => 'app-backend',
+    'basePath' => dirname(__DIR__),
+    'controllerNamespace' => 'backend\controllers',
+    'bootstrap' => ['log'],
+    'components' => [
+        'request' => [
+            'csrfParam' => '_csrf-backend',
+        ],
+        
+        'user' => [
+            'identityClass' => 'common\models\Users', // Your user model class
+            'enableAutoLogin' => true,
+            'loginUrl' => ['site/login'], // Adjust the login URL if needed
+        ],
+        'session' => [
+            // this is the name of the session cookie used for login on the backend
+            'name' => 'advanced-backend',
+        ],
+        'log' => [
+            'traceLevel' => YII_DEBUG ? 3 : 0,
+            'targets' => [
+                [
+                    'class' => \yii\log\FileTarget::class,
+                    'levels' => ['error', 'warning'],
+                ],
+            ],
+        ],
+        'errorHandler' => [
+            'errorAction' => 'site/error',
+        ],
+        
+        'urlManager' => [
+            'enablePrettyUrl' => true,
+            'showScriptName' => false,
+            'rules' => [
+           
+                'defaultRoute' => 'site/stakeholder-counts',
+                '/order/fetch-customer-info' => 'order/fetch-customer-info', // Adjust as needed
+    
+                'order/customer-type-selection' => 'order/customer-type-selection',
+                'order/existing-customers' => 'order/existing-customers',
+            ],
+        ],
+        
+    ],
+    'params' => $params,
+];
